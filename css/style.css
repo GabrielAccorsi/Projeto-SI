@@ -20,7 +20,7 @@ body {
 }
 
 body {
-    background-color: aliceblue;
+    background-color: #f7f7f7;
     color: #000;
 }
 
@@ -74,18 +74,10 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-[data-theme="dark"] .navbar li a {
-    color: #ffffff;
-}
 
 .navbar li a:hover {
     background-color: #77ffc0;
     color: #201b2c;
-}
-
-[data-theme="dark"] .navbar li a:hover {
-    background-color: #77ffc0;
-    color: #ffffff;
 }
 
 
@@ -118,27 +110,10 @@ body {
     color: #2ec47e;
 }
 
-[data-theme="dark"] .register-button {
-    background-color: #1e1e1e;
-    color: #fff;
-    border: 2px solid #77ffc0;
-}
-
-[data-theme="dark"] .register-button:hover {
-    background-color: #77ffc0;
-    color: #1e1e1e;
-}
-
-
 .intro {
-    background-color: white;
+    background-color: #f7f7f7;
     padding: 50px 20px;
     text-align: center;
-}
-
-[data-theme="dark"] .intro {
-    background-color: #1e1e1e;
-    color: #ffffff;
 }
 
 .intro-container {
@@ -192,15 +167,7 @@ body {
     color: #2ec47e;
 }
 
-[data-theme="dark"] .cta-button {
-    background-color: #1e1e1e;
-    color: #fff;
-}
 
-[data-theme="dark"] .cta-button:hover {
-    background-color: #77ffc0;
-    color: #1e1e1e;
-}
 
 #main_card {
     background-color: rgb(46, 242, 203);
@@ -254,7 +221,7 @@ body {
 
 
 .study-anytime {
-    background-color: white;
+    background-color: #f7f7f7;
     padding: 50px 20px;
     text-align: center;
 }
@@ -530,12 +497,17 @@ body {
     .community-container {
         padding: 20px;
     }
-
+    .learning-methods {
+        display: flex;
+        justify-content: center; 
+        flex-wrap: wrap;
+        padding: 20px;
+    }
     .learn-languages .card {
         background-color: #f0ffffde;
         max-width: 300px; 
         width: 100%; 
-        margin: 10px;
+        margin: 10px auto;
     } 
 
     .navbar ul {
