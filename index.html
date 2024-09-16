@@ -182,17 +182,6 @@
     </div>
   </footer>
   <script>
-    function toggleTheme() {
-      const body = document.body;
-      const themeToggle = document.getElementById('theme-toggle');
-      if (body.getAttribute('data-theme') === 'dark') {
-        body.setAttribute('data-theme', 'light');
-        themeToggle.textContent = '.';
-      } else {
-        body.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '.';
-      }
-    }
     document.addEventListener('DOMContentLoaded', function () {
       const hamburgerMenu = document.querySelector('.hamburger-menu');
       const navLinks = document.querySelector('.nav_links');
