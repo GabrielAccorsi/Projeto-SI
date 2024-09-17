@@ -34,6 +34,10 @@ document.getElementById('loginForm')?.addEventListener('submit', function(event)
   const senha = document.getElementById('senha').value;
 
   const usuario = usuarios.find(user => user.email === email && user.senha === senha);
+  if (email === "" || senha === "") {
+    document.getElementById("incorreto").innerHTML = 'Preencha todos os campos!';
+    return; 
+  }
 
   if (usuario) {
       // Armazena as informações do usuário no localStorage
@@ -48,8 +52,8 @@ document.getElementById('loginForm')?.addEventListener('submit', function(event)
       } else if (usuario.tipo === 'adm') {
           window.location.href = 'pagina_adm.html';
       }
-  } else {
-      alert('Email ou senha incorretos!');
+  } else { 
+    document.getElementById("incorreto").innerHTML= 'Email ou senha incorretos!';
   }
 });
 

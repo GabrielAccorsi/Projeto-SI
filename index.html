@@ -7,6 +7,10 @@
   <title>Aprenda a Programar</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="css/profile-dropdown-menu.css">
 </head>
 
 <body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
@@ -22,11 +26,59 @@
       <li><a href="#">Sobre Nós</a></li>
       <li><a href="#">Contato</a></li>
     </ul>
-    <ul class="nav_auth">
-      <li><a href="login.html">Entrar</a></li>
-      <li><a href="#" id="register-button">Registrar-se</a></li>
-      <li><a href="#" id="theme-toggle" onclick="toggleTheme()"></a></li>
-    </ul>
+  
+      <!--o bagulho do perfil loucura-->
+     
+      <div class="profile-dropdown">
+        <div class="profile-dropdown-btn" onclick="toggle()">
+          <div class="profile-img">
+          </div>
+          <span id="nome_entrar">
+          </span>
+        </div>
+
+        <ul class="profile-dropdown-list">
+          <li class="profile-dropdown-list-item">
+            <a href="#" id="Perfil">
+              <i class="fa-regular fa-user"></i>
+              Perfil
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item">
+            <a href="#" id="Posts">
+              <i class="fa-regular fa-envelope"></i>
+              Posts
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-solid fa-chart-line"></i>
+              Analytics
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-solid fa-sliders"></i>
+              Settings
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-regular fa-circle-question"></i>
+              Ajuda e Suporte
+            </a>
+          </li>
+          <hr>
+          <li class="profile-dropdown-list-item">
+            <a href="#" id="Deslogar">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Deslogar
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
     <div class="hamburger-menu" onclick="toggleMenu()">
       <div class="bar"></div>
       <div class="bar"></div>
@@ -171,6 +223,8 @@
       <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
     </div>
   </footer>
+ 
+  <script src="js/menu-drop.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const hamburgerMenu = document.querySelector('.hamburger-menu');
