@@ -1,7 +1,6 @@
 :root{
     --primary:#eeeeee;
-    --secondary:#227c70;
-    --green: #82cd47;
+    --secondary:#2ec47e;
     --secondary-light: rgb(34,124,112,0.2);
     --secondary-light-2: rgb(127,183,126,0.1);
     --white:#fff;
@@ -27,7 +26,7 @@
     cursor: pointer;
     width: 140px;
     transition: box-shadow 0.2s, background-color 0.2s;
-    margin-right: 20vh;
+    margin-right: 2rem;
 }
 .profile-dropdown-btn:hover{
     background-color: var(--secondary-light-2);
@@ -39,7 +38,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: #393e46;
+
     background-size: cover;
 }
 
@@ -99,4 +98,15 @@
     line-height: 2.3rem;
     text-align: center;
     border-radius:50% ;
+}
+
+@media (max-width: 768px) {
+    .profile-dropdown-btn {
+        margin-right: 1rem; 
+    }
+
+    .profile-dropdown-list {
+        right: 0;
+        left: auto; 
+    }
 }

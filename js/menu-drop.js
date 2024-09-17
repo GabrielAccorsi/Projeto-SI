@@ -23,7 +23,7 @@ function menu() {
             }
         });
 
-        // Atualiza o conteúdo do botão com o nome do usuário e a foto
+        
         profileImg.style.backgroundImage = `url('${usuarioLogado.foto}')`;
         nomeEntrar.innerHTML = `${usuarioLogado.nome} <i class="fa-solid fa-angle-down"></i>`;
 
@@ -31,8 +31,8 @@ function menu() {
         const exitItem = profileDropdownList.querySelector('#Deslogar');
         exitItem.addEventListener('click', logout);
     } else {
-        // Configura o botão de entrar para usuários não logados
-        profileImg.style.backgroundImage = `url('imagens/entrar.png')`;
+        
+        profileImg.style.backgroundImage = `url('../imagens/entrar.png')`;
         nomeEntrar.innerHTML = `Entrar `;
 
         btn.addEventListener('click', function() {
@@ -40,6 +40,4 @@ function menu() {
         });
     }
 }
-
-// Executa a função quando o DOM estiver completamente carregado
 document.addEventListener('DOMContentLoaded', menu);
