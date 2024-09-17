@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do Administrador</title>
+    <style>
+        .perfil {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .perfil img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="perfil">
+        <img id="fotoPerfil" src="" alt="Foto de Perfil">
+        <span id="nomeUsuario"></span>
+    </div>
+
+    <h2>Bem-vindo à Página do Administrador!</h2>
+    <p>Conteúdo exclusivo para administradores.</p>
+
+    <button onclick="listarUsuarios()">Listar usuários</button><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <script src="js/scriptlogin.js"></script>
+    <script>
+        // Carrega as informações do usuário do localStorage
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+        if (usuarioLogado) {
+            document.getElementById('fotoPerfil').src = usuarioLogado.foto;
+            document.getElementById('nomeUsuario').textContent = usuarioLogado.nome;
+        } else {
+            alert('Nenhum usuário logado!');
+        }
+    </script>
+</body>
+</html>
+

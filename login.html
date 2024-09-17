@@ -33,18 +33,19 @@
         <div class="right-login">
             <div class="card-login">
                 <h1>Entrar</h1>
-                <div class="textfild">
-                    <label for="usuario">Email</label>
-                    <input type="text" name="usuario" placeholder="Email" id="usuario">
-                </div>
-                <div class="textfild">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" placeholder="Senha" id="senha">
-                </div>
-                <button type="button" class="btn-login" onclick="validarLogin()">Login</button>
+                <form id="loginForm">
+                    <div class="textfild">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" placeholder="Email" id="email">
+                    </div>
+                    <div class="textfild">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" placeholder="Senha" id="senha">
+                    </div>
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
             </div>
         </div>
-    </div>
     </div>
     <script src="js/scriptlogin.js"></script>
 </body>
