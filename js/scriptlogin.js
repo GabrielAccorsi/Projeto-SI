@@ -84,11 +84,12 @@ function cadastrarUsuario(nome, email, tipo, senha) {
 
 // Função para listar usuários
 function listarUsuarios() {
-  let lista = 'Lista de usuários:\n';
+  let lista = 'Usuários:';
   usuarios.forEach(user => {
-      lista += `ID: ${user.id}, Nome: ${user.nome}, Email: ${user.email}, Tipo: ${user.tipo}\n`;
+      lista += `<br>ID: ${user.id}<br>, Nome: ${user.nome}<br>, Email: ${user.email}<br>, Tipo: ${user.tipo}<br><br>`;
   });
-  alert(lista); // Exibe a lista em um alerta. Pode ser substituído por outra forma de exibição.
+  //alert(lista); // Exibe a lista em um alerta. Pode ser substituído por outra forma de exibição.
+  document.getElementById('listausr').innerHTML = '\n<h2>Lista de Usuários</h2>' + lista + '\n'; // Exibe a lista em um elemento
 }
 
 // Função para cadastrar novos usuários (usada na página do administrador)

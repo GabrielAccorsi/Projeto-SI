@@ -7,7 +7,30 @@
     <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
     <title>Página do Aluno</title>
 </head>
-<body>
+<body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
+    <nav class="navbar">
+      <div class="nav_logo">
+        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
+      </div>
+      <ul class="nav_links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="tutorialteste.html">Tutoriais</a></li>
+        <li><a href="#">Exercícios</a></li>
+        <li><a href="forum/forums.html">Fórum</a></li>
+        <li><a href="#">Sobre Nós</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+      <ul class="nav_auth">
+        <li><a href="login.html">Entrar</a></li>
+        <li><a href="#" id="register-button">Registrar-se</a></li>
+        <li><a href="#" id="theme-toggle" onclick="toggleTheme()"></a></li>
+      </ul>
+      <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
     <h2>Bem-vindo à Página do Aluno!</h2>
     <p>Conteúdo exclusivo para alunos.</p>
 </body>

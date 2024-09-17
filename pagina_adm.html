@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
     <title>Página do Administrador</title>
     <style>
         .perfil {
@@ -18,7 +20,30 @@
         }
     </style>
 </head>
-<body>
+<body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
+    <nav class="navbar">
+      <div class="nav_logo">
+        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
+      </div>
+      <ul class="nav_links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="tutorialteste.html">Tutoriais</a></li>
+        <li><a href="#">Exercícios</a></li>
+        <li><a href="forum/forums.html">Fórum</a></li>
+        <li><a href="#">Sobre Nós</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+      <ul class="nav_auth">
+        <li><a href="login.html">Entrar</a></li>
+        <li><a href="#" id="register-button">Registrar-se</a></li>
+        <li><a href="#" id="theme-toggle" onclick="toggleTheme()"></a></li>
+      </ul>
+      <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
     <div class="perfil">
         <img id="fotoPerfil" src="" alt="Foto de Perfil">
         <span id="nomeUsuario"></span>
@@ -27,8 +52,12 @@
     <h2>Bem-vindo à Página do Administrador!</h2>
     <p>Conteúdo exclusivo para administradores.</p>
 
-    <button onclick="listarUsuarios()">Listar usuários</button><br>
-    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="listarUsuarios()">Listar usuários</button>
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <div id="listausr">
+        
+    </div>
+
 
     <script src="js/scriptlogin.js"></script>
     <script>
