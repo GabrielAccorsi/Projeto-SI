@@ -31,6 +31,8 @@ body {
     background-color: #ffffff;
     padding: 10px 20px;
     flex-wrap: wrap;
+    font-size: 1rem;
+
 }
 
 .nav_logo {
@@ -52,7 +54,7 @@ body {
 .navbar ul {
     list-style-type: none;
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 .nav_links {
@@ -61,12 +63,8 @@ body {
     color: #000000;
 }
 
-.nav_auth {
-    margin-left: auto;
-    margin-right: 10vw;
-}
 
-.navbar li a {
+.nav_links li a {
     color: #000000;
     text-align: center;
     text-decoration: none;
@@ -75,7 +73,7 @@ body {
 }
 
 
-.navbar li a:hover {
+.nav_links li a:hover {
     background-color: #77ffc0;
     color: #201b2c;
 }

@@ -63,6 +63,11 @@ body {
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -172,6 +177,7 @@ body {
   background-color: white;
   padding: 50px 20px;
   text-align: center;
+  padding-top: 100px;
 }
 
 [data-theme="dark"] .intro {
