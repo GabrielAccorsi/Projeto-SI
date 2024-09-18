@@ -1,6 +1,14 @@
 function logout() {
     localStorage.removeItem('usuarioLogado');
-    location.reload();
+    const currentPage = window.location.pathname;
+    
+    if (currentPage.includes('pagina_aluno.html') || currentPage.includes('pagina_adm.html')) {
+        // Redireciona para a página de login se estiver na página do aluno ou do admin
+        window.location.href = 'login.html';
+    } else {
+        // Se estiver em outra página, apenas recarrega a página
+        location.reload();
+    }
 }
 
 function menu() {
