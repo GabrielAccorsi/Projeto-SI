@@ -169,6 +169,7 @@ form {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    position: relative; 
 }
 
 .textfild > input {
@@ -191,6 +192,17 @@ form {
 
 .textfild > input::placeholder {
     color: #aaa;
+}
+#togglePassword {
+    position: absolute;
+    right: 10px; 
+    top: calc(50% - -5px);
+    cursor: pointer;
+    color: #000000; 
+}
+
+#togglePassword:hover {
+    color: #333; 
 }
 
 .btn-login {

@@ -82,7 +82,9 @@ body {
 .hamburger-menu {
     display: none; 
     cursor: pointer;
-    margin-left: 20px;
+    position: absolute;
+    left: 20px; 
+    top: 20px; 
 }
 
 .hamburger-menu .bar {
@@ -530,9 +532,5 @@ body {
         margin-left: 20px;
     }
 
-    .nav_auth {
-        display: flex; 
-        gap: 10px; 
-        margin-right: 20px;
-    }
+
 }
