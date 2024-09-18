@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <style>
+      body{
+        background: linear-gradient(120deg, rgb(29, 29, 66),rgb(41, 5, 32));
+        color: white;
+      }
+      h2{
+        text-align: center;
+        padding: 20px;
+        font-size: 35px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+      }
+      p{
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        padding: 20px;
+        font-size:25px;
+      }
+    </style>
     <title>Página do Aluno</title>
 </head>
 <body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
@@ -33,5 +56,26 @@
     </nav>
     <h2>Bem-vindo à Página do Aluno!</h2>
     <p>Conteúdo exclusivo para alunos.</p>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav_links');
+  
+        hamburgerMenu.addEventListener('click', function (event) {
+          event.stopPropagation();
+          navLinks.classList.toggle('open');
+        });
+  
+        document.addEventListener('click', function (event) {
+          if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+            navLinks.classList.remove('open');
+          }
+        });
+      });
+      function entrar() {
+        document.getElementById('linkIndex').click();
+      }
+  
+    </script>
 </body>
 </html>

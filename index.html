@@ -30,7 +30,7 @@
       <!--o bagulho do perfil loucura-->
      
       <div class="profile-dropdown">
-        <div class="profile-dropdown-btn" onclick="toggle()">
+        <div class="profile-dropdown-btn">
           <div class="profile-img">
           </div>
           <span id="nome_entrar">
@@ -46,7 +46,7 @@
           </li>
           <li class="profile-dropdown-list-item">
             <a href="#" id="Posts">
-              <i class="fa-regular fa-envelope"></i>
+              <i class="fa-regular fa-comments"></i>
               Posts
             </a>
           </li>
@@ -76,7 +76,6 @@
             </a>
           </li>
         </ul>
-
       </div>
 
     <div class="hamburger-menu" onclick="toggleMenu()">
@@ -224,7 +223,7 @@
     </div>
   </footer>
  
-  <script src="js/menu-drop.js"></script>
+  <script src="js/menu-drop.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const hamburgerMenu = document.querySelector('.hamburger-menu');

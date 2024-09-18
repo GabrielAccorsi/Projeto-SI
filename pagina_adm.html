@@ -5,19 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Página do Administrador</title>
     <style>
+        body{
+          background: linear-gradient(120deg, rgb(29, 29, 66),rgb(41, 5, 32));
+          color: white;
+        }
+        h2{
+          padding: 10px;
+          margin: 10px;
+        }
+        p{
+          padding: 10px;
+        }
+        button{
+          border-radius: 15px;
+          padding: 5px;
+          margin: 10px;
+        }
         .perfil {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 35px;
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
         .perfil img {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin-right: 10px;
+            margin: 20px;
+
         }
+
     </style>
 </head>
 <body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
@@ -33,11 +56,8 @@
         <li><a href="#">Sobre Nós</a></li>
         <li><a href="#">Contato</a></li>
       </ul>
-      <ul class="nav_auth">
-        <li><a href="login.html">Entrar</a></li>
-        <li><a href="#" id="register-button">Registrar-se</a></li>
-        <li><a href="#" id="theme-toggle" onclick="toggleTheme()"></a></li>
-      </ul>
+
+      
       <div class="hamburger-menu" onclick="toggleMenu()">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -70,6 +90,27 @@
         } else {
             alert('Nenhum usuário logado!');
         }
+
+      
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navLinks = document.querySelector('.nav_links');
+
+      hamburgerMenu.addEventListener('click', function (event) {
+        event.stopPropagation();
+        navLinks.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+    function entrar() {
+      document.getElementById('linkIndex').click();
+    }
+
     </script>
 </body>
 </html>

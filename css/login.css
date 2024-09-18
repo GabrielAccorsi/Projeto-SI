@@ -169,6 +169,7 @@ form {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    position: relative;
 }
 
 .textfild > input {
@@ -191,6 +192,14 @@ form {
 
 .textfild > input::placeholder {
     color: #aaa;
+}
+#togglePassword{
+    position: absolute;
+    padding: 10px;
+    right:1px; /* Ajusta a posição do ícone à direita do campo */
+    top: calc(50% - 1px);
+    cursor: pointer;
+    color: #030303; /* Cor inicial do ícone */
 }
 
 .btn-login {
@@ -225,36 +234,38 @@ form {
 }
 
 @media only screen and (max-width: 768px) {
-    .nav_links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: #ffffff;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-    }
-
-    .nav_links.open {
-        display: flex;
-    }
-
-    .nav_links li {
-        text-align: center;
-        padding: 10px 0;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .nav_links li a,
-    .nav_links li button {
-        padding: 10px;
-    }
-
-    .hamburger-menu {
-        display: flex;
-    }
+    
+        .navbar {
+            flex-direction: column;
+            gap: 10px;
+        }
+    
+        .nav_logo {
+            margin: 0px 0;
+        }
+    
+        .nav_logo img {
+            width: 30px;
+        }
+    
+        .navbar ul {
+            display: none; 
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav_links.open {
+            display: flex; 
+        }
+    
+        .hamburger-menu {
+            display: block; 
+        }
 }
 
 @media only screen and (max-width: 600px) {
