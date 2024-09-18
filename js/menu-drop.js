@@ -47,7 +47,7 @@ function menu() {
         const exitItem = document.getElementById('Deslogar');
         exitItem.addEventListener('click', logout);
     } else {
-        profileImg.style.backgroundImage = `url('../imagens/entrar.png')`;
+        profileImg.style.backgroundImage = `url('https://gabrielaccorsi.github.io/Projeto-SI/imagens/entrar.png')`;
         nomeEntrar.innerHTML = `Entrar`;
 
         btn.addEventListener('click', function () {
