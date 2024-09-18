@@ -368,9 +368,16 @@ body {
     padding: 0;
 }
 
+
+.nav_links li a{
+    display: inline-block;
+    margin-right: 15px;
+    color: #fff;
+}
 .nav_links li {
     display: inline-block;
     margin-right: 15px;
+    color: #fff;
 }
 
 .nav_links a {
