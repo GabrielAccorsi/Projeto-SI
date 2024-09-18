@@ -22,7 +22,23 @@ let usuarios = [
       email: 'paula@gmail.com',
       tipo: 'aluno',
       senha: '1234',
-      foto: 'imagens/paula.png' // Caminho para a foto de perfil
+      foto: 'imagens/paula.jpg' // Caminho para a foto de perfil
+  },
+  {
+      id: 4,
+      nome: 'Felipe',
+      email: 'felipe@gmail.com',
+      tipo: 'aluno',
+      senha: '1234',
+      foto: 'imagens/felipe.jpg' // Caminho para a foto de perfil
+  },
+  {
+      id: 5,
+      nome: 'Itachi',
+      email: 'itachi@gmail.com',
+      tipo: 'aluno',
+      senha: '1234',
+      foto: 'imagens/itachi.jpg' // Caminho para a foto de perfil
   }
 ];
 const togglePassword = document.querySelector("#togglePassword");
