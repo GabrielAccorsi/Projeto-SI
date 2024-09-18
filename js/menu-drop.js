@@ -2,9 +2,6 @@ function logout() {
     localStorage.removeItem('usuarioLogado');
     location.reload();
 }
-window.addEventListener('resize', function() {
-    profileDropdownList.classList.remove("active");
-});
 
 
 function menu() {
@@ -16,8 +13,7 @@ function menu() {
 
     const toggle = () => profileDropdownList.classList.toggle("active");
 
-    if (usuarioLogado) {+
-
+    if (usuarioLogado) {
         
         btn.addEventListener('click', toggle);
 

@@ -26,6 +26,7 @@
     cursor: pointer;
     width: 140px;
     transition: box-shadow 0.2s, background-color 0.2s;
+    margin-right: 2rem;
 }
 .profile-dropdown-btn:hover{
     background-color: var(--secondary-light-2);
@@ -99,3 +100,13 @@
     border-radius:50% ;
 }
 
+@media (max-width: 768px) {
+    .profile-dropdown-btn {
+        margin-right: 1rem; 
+    }
+
+    .profile-dropdown-list {
+        right: 0;
+        left: auto; 
+    }
+}

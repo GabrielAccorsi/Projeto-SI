@@ -82,9 +82,7 @@ body {
 .hamburger-menu {
     display: none; 
     cursor: pointer;
-    position: absolute;
-    left: 20px; 
-    top: 20px; 
+    margin-left: 20px;
 }
 
 .hamburger-menu .bar {
@@ -365,24 +363,24 @@ body {
     margin-bottom: 10px;
 }
 
-.nav_links {
+.footer .nav_links {
     list-style: none;
     padding: 0;
 }
 
 
-.nav_links li a{
+ .footer .nav_links li a{
     display: inline-block;
     margin-right: 15px;
     color: #fff;
 }
-.nav_links li {
+.footer .nav_links li {
     display: inline-block;
     margin-right: 15px;
     color: #fff;
 }
 
-.nav_links a {
+.footer .nav_links a {
     text-decoration: none;
     color: #fff;
 }
@@ -519,5 +517,9 @@ margin-left: 0px;
         margin-left: 20px;
     }
 
-
+    .nav_auth {
+        display: flex; 
+        gap: 10px; 
+        margin-right: 20px;
+    }
 }

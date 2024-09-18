@@ -25,17 +25,6 @@ let usuarios = [
       foto: 'imagens/paula.png' // Caminho para a foto de perfil
   }
 ];
-const togglePassword = document.querySelector("#togglePassword");
-const passwordField = document.querySelector("#senha");
-
-togglePassword.addEventListener("click", function () {
-    const type = passwordField.getAttribute("type") === "password" ? "text":"password";
-    passwordField.setAttribute("type", type);
-
-    this.classList.toggle("fa-eye");
-    this.classList.toggle("fa-eye-slash");
-});
-
 
 // Função de login
 document.getElementById('loginForm')?.addEventListener('submit', function(event) {
