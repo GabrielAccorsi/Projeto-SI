@@ -333,14 +333,16 @@ body {
     margin-bottom: 10px;
 }
 
+
 /* Estilo geral do rodapé */
 .footer {
+    position: absolute;
     background-color: #2f2841;
     padding: 20px;
     text-align: center;
     font-size: 14px;
-    bottom: 0%;
-    width: 100%;
+    bottom: 10px;
+    width: 97%;
     
 }
 
