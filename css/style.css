@@ -333,42 +333,70 @@ body {
     margin-bottom: 10px;
 }
 
-/* Footer */
-/* styles.css */
 
 /* Estilo geral do rodapé */
 .footer {
+    position: absolute;
     background-color: #2f2841;
     padding: 20px;
     text-align: center;
     font-size: 14px;
+    bottom: 10px;
+    width: 97%;
+    
 }
 
 /* Logo e links de navegação */
-.nav_logo {
+.Footer_nav_logo {
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 10px;
+    color: #ffffff;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    
+
+}
+.footer p{
+    padding: 0;
+    font-size: 18px;
+
 }
 
-.footer .nav_links {
+.Footer_nav_logo img {
+width: 40px;
+height: auto;
+margin-right: 10px;
+border-radius: 50%;
+}
+
+
+ .Footer_nav_links {
     list-style: none;
     padding: 0;
+    
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center; 
 }
 
 
- .footer .nav_links li a{
+ .footer_nav_links li a{
     display: inline-block;
     margin-right: 15px;
     color: #fff;
 }
-.footer .nav_links li {
+.Footer_nav_links li {
     display: inline-block;
     margin-right: 15px;
     color: #fff;
 }
 
-.footer .nav_links a {
+.Footer_nav_links a {
     text-decoration: none;
     color: #fff;
 }
@@ -379,7 +407,7 @@ body {
 }
 .social-links a {
     margin-right: 10px;
-    color: #333;
+    color: #2f2841;
     font-size: 20px;
 }
 .fab img{
@@ -398,13 +426,6 @@ body {
 .footer-bottom {
     margin-top: 20px;
     color: #fff;
-}
-
-
-.footer .nav_logo{
-    color: #ffffff;
-    justify-content: center;
-margin-left: 0px;
 }
 
 

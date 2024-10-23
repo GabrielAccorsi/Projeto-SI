@@ -315,3 +315,90 @@ form {
         width: 100%;
     }
 }
+/* Estilo geral do rodapé */
+.footer {
+    background-color: #2f2841;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    bottom: 0%;
+    position: absolute;
+    width: 100%;
+}
+
+/* Logo e links de navegação */
+.Footer_nav_logo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    
+
+}
+
+.Footer_nav_logo img {
+width: 40px;
+height: auto;
+margin-right: 10px;
+border-radius: 50%;
+}
+
+
+ .Footer_nav_links {
+    list-style: none;
+    padding: 0;
+    
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center; 
+}
+
+
+ .footer_nav_links li a{
+    display: inline-block;
+    margin-right: 15px;
+    color: #fff;
+}
+.Footer_nav_links li {
+    display: inline-block;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.Footer_nav_links a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Ícones sociais */
+.social-links {
+    margin-top: 20px;
+}
+.social-links a {
+    margin-right: 10px;
+    color: #2f2841;
+    font-size: 20px;
+}
+.fab img{
+    width: 30px;
+    justify-content: center;
+
+}
+
+/* Informações de contato */
+.contact-info {
+    margin-top: 20px;
+    color: #fff;
+}
+
+/* Rodapé inferior */
+.footer-bottom {
+    margin-top: 20px;
+    color: #fff;
+}
