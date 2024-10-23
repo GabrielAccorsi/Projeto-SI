@@ -41,7 +41,7 @@ body {
     color: #000000;
     font-size: 24px;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: 150px;
 }
 
 .nav_logo img {
@@ -79,21 +79,6 @@ body {
 }
 
 
-.hamburger-menu {
-    display: none; 
-    cursor: pointer;
-    position: absolute;
-    left: 20px; 
-    top: 20px; 
-}
-
-.hamburger-menu .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #000;
-    margin: 4px 0;
-    transition: 0.4s;
-}
 
 
 .intro {
@@ -336,13 +321,12 @@ body {
 
 /* Estilo geral do rodapé */
 .footer {
-    position: absolute;
     background-color: #2f2841;
     padding: 20px;
     text-align: center;
     font-size: 14px;
     bottom: 10px;
-    width: 97%;
+    width: 100%;
     
 }
 
@@ -373,7 +357,7 @@ border-radius: 50%;
 }
 
 
- .Footer_nav_links {
+.Footer_nav_links {
     list-style: none;
     padding: 0;
     
@@ -450,36 +434,12 @@ border-radius: 50%;
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-    }
-
     .nav_logo {
         margin: 0px 0;
     }
 
     .nav_logo img {
         width: 30px;
-    }
-
-    .navbar ul {
-        display: none; 
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background-color: #ffffff;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-        z-index: 1000;
-    }
-    .nav_links.open {
-        display: flex; 
-    }
-
-    .hamburger-menu {
-        display: block; 
     }
 
     .card {

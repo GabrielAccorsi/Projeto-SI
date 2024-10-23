@@ -19,14 +19,24 @@ body * {
     box-sizing: border-box;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    font-size: 1rem;
+
+}
+
 .nav_logo {
     display: flex;
     align-items: center;
-    color: #2b134b;
+    color: #000000;
     font-size: 24px;
     font-weight: 600;
-    margin-left: -250px;
-    padding-right: 80px;
+    margin-left: 150px;
 }
 
 .nav_logo img {
@@ -36,88 +46,33 @@ body * {
     border-radius: 50%;
 }
 
-.navbar {
-    background-color: #ffffff;
-    overflow: hidden;
-    font-family: 'Montserrat', sans-serif;
+.navbar ul {
+    list-style-type: none;
     display: flex;
-    justify-content: center; 
-    align-items: center;
-    padding: 10px; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 15px;
 }
 
 .nav_links {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center; 
+    margin-left: auto;
+    margin-right: auto;
+    color: #000000;
 }
 
-.navbar ul {
-    list-style-type: none;
-    display: flex; 
-    margin: 0;
-    padding: 0;
-}
 
-.navbar li {
-    margin-right: 20px; 
-}
-
-.navbar li:last-child {
-    margin-right: 0; 
-}
-
-.navbar li a {
-    display: block;
-    color: #2b134b;
+.nav_links li a {
+    color: #000000;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.navbar li a:hover {
-    background-color: #77ffc0;
-    color: #ffffff;
-}
-
-.navbar li button {
-    display: block;
-    color: #2b134b;
-    text-align: center;
     padding: 14px 16px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-    border: none;
-    background-color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1em; 
-    cursor: pointer; 
-    outline: none; 
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.navbar li button:hover {
+
+.nav_links li a:hover {
     background-color: #77ffc0;
-    color: #ffffff;
-}
-.hamburger-menu {
-    display: none; 
-    cursor: pointer;
-    position: absolute;
-    left: 20px; 
-    top: 20px; 
+    color: #201b2c;
 }
 
-.hamburger-menu .bar {
-    width: 25px;
-    height: 3px;
-    background-color: #000;
-    margin: 4px 0;
-    transition: 0.4s;
-}
 
 form {
     display: flex;
@@ -208,6 +163,7 @@ form {
 .textfild > input::placeholder {
     color: #aaa;
 }
+
 #togglePassword{
     position: absolute;
     padding: 10px;
@@ -237,9 +193,7 @@ form {
 }
 
 @media only screen and (min-width: 1650px) {
-    .left-login, .right-login {
-        zoom: 0.8;
-    }
+
 }
 
 @media only screen and (max-width: 950px) {
@@ -263,24 +217,6 @@ form {
             width: 30px;
         }
     
-        .navbar ul {
-            display: none; 
-            flex-direction: column;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background-color: #ffffff;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        .nav_links.open {
-            display: flex; 
-        }
-    
-        .hamburger-menu {
-            display: block; 
-        }
 }
 
 @media only screen and (max-width: 600px) {
