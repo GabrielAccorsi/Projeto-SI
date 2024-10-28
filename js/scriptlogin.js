@@ -99,20 +99,6 @@ function cadastrarUsuario(nome, email, tipo, senha) {
   console.log('Usuário cadastrado com sucesso!', novoUsuario);
 }
 
-// Função para adicionar um novo usuário
-function cadastrarUsuario(nome, email, tipo, senha) {
-  const novoUsuario = {
-      id: usuarios.length + 1, // ID automático
-      nome: nome,
-      email: email,
-      tipo: tipo,
-      senha: senha
-  };
-
-  usuarios.push(novoUsuario); // Adiciona o novo usuário ao vetor
-  console.log('Usuário cadastrado com sucesso!', novoUsuario);
-}
-
 // Função para listar usuários
 function listarUsuarios() {
   let lista = 'Usuários:';

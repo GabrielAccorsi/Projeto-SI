@@ -1,165 +1,152 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprenda a Programar</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/styles_forum.css">
-  <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <link rel="stylesheet" href="css/profile-dropdown-menu.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum - Curso Web Design</title>
+    <link rel="stylesheet" href="/css/styles_forum_novo.css">
+    <link rel="stylesheet" href="/css/styles_body_forum.css">
+    <link rel="stylesheet" href="/css/footer_forum.css">
+    <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="css/profile-dropdown-menu.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/scriptlogin.js" defer></script>
 </head>
+<body>
+    
 
-<body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
-  <nav class="navbar">
-    <div class="nav_logo">
-      <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-    </div>
-    <ul class="nav_links">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="tutorialteste.html">Tutoriais</a></li>
-      <li><a href="teste-ferramenta.html">Exercícios</a></li>
-      <li><a href="forum/forums.html">Fórum</a></li>
-      <li><a href="cms-teste/index.html">Sobre Nós</a></li>
-      <li><a href="#">Contato</a></li>
-    </ul>
-  
-      <!--o bagulho do perfil loucura-->
-     
-      <div class="profile-dropdown">
-        <div class="profile-dropdown-btn">
-          <div class="profile-img">
-          </div>
-          <span id="nome_entrar">
-          </span>
+  <nav class="navbar" id="navbar"></nav>
+      <!--Fim loucura-->
+
+    <!--Inicio do corpo do fórum-->
+
+    <div class="content">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Pesquisar no fórum..." oninput="searchTopics()">
         </div>
 
-        <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Perfil">
-              <i class="fa-regular fa-user"></i>
-              Perfil
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Posts">
-              <i class="fa-regular fa-comments"></i>
-              Posts
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-chart-line"></i>
-              Engajamento
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Configurações
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-circle-question"></i>
-              Ajuda e Suporte
-            </a>
-          </li>
-          <hr>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Deslogar">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Deslogar
-            </a>
-          </li>
-        </ul>
-      </div>
+        <div class="categories">
+            <button onclick="filterTopics('all')" class="active">Todas as categorias</button>
+            <button onclick="filterTopics('Geral')">Geral</button>
+            <button onclick="">Recentes</button>
+            <button class="new-topic-button" onclick="openNewTopicModal()">+ Novo Tópico</button>
+        </div>
 
-    <div class="hamburger-menu" onclick="toggleMenu()">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+        <div id="topics-container">
+            <div class="forum-topic" data-predefined="true" data-category="Geral">
+                <div class="forum-topic-details"  >
+                    <img src="imagens/gabriel.png" alt="Avatar">
+                    <div>
+                        <h3 class="forum-topic-title"><a href="#">Programação Mobile</a></h3>
+                        <p>Gabriel Accorsi - 29/06/2022 09:07:15</p>
+                    </div>
+                </div>
+                <p>Geral</p>
+            </div>
+
+            <div class="forum-topic" data-predefined="true" data-category="Geral">
+                <div class="forum-topic-details">
+                    <img src="/imagens/gabriel.png" alt="Avatar">
+                    <div>
+                        <h3 class="forum-topic-title"><a href="#">Implementação de Bibliotécas</a></h3>
+                        <p>Gabriel Accorsi - 29/06/2022 19:08:25</p>
+                    </div>
+                </div>
+                <p>Geral</p>
+            </div>
+
+            <div class="forum-topic" data-predefined="true" data-category="Geral">
+              <div class="forum-topic-details">
+                  <img src="/imagens/gabriel.png" alt="Avatar">
+                  <div>
+                      <h3 class="forum-topic-title"><a href="#">Boas práticas de programação</a></h3>
+                      <p>Gabriel Accorsi - 30/06/2022 15:30:16</p>
+                  </div>
+              </div>
+              
+              <p>Geral</p>
+          </div>
+
+        </div>
+
     </div>
-  </nav>
-  <!--Fim loucura-->
-  <!--Inicio corpo forum-->
-  <h1>Fórum</h1>
 
-    <!-- Formulário para criar um novo tópico -->
-    <form id="form-topico">
-        <input type="text" id="assunto" placeholder="Assunto" required>
-        <input type="text" id="criador" placeholder="Criador" required>
-        <textarea id="texto" placeholder="Texto do Tópico" required></textarea>
-        <button type="submit">Criar Tópico</button>
-    </form>
+    <!--Fim do forum-->
 
-    <!-- Barra de busca -->
-    <input type="text" id="buscar" placeholder="Buscar tópico por assunto...">
+    <!--Inicio rodapé-->
 
-    <!-- Lista de tópicos -->
-    <div id="lista-topicos"></div>
+    <footer class="footer">
+        <section class="contact-info">
+            <p>Telefone: (24) 9999-88888</p>
+            <p>Email: contato@ensinarprogramacao.com</p>
+            <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
+        </section>
+    
+        <section class="footer-navbar">
+            <div class="Footer_nav_logo">
+                <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
+            </div>
+            <ul class="Footer_nav_links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tutorialteste.html">Tutoriais</a></li>
+                <li><a href="#">Exercícios</a></li>
+                <li><a href="forum/forums.html">Fórum</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </section>
+    
+        <section class="footer-info">
+            <div class="social-links">
+                <a href="https://www.facebook.com/">
+                    <img src="imagens/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/">
+                    <img src="imagens/instagram.png" alt="Instagram">
+                </a>
+            </div>
+        </section>
+    
+        <div class="footer-bottom">
+            <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <!--Fim do rodapé-->
+    
 
-    <script src="script.js"></script>
-  <!--Fim corpo forum-->
-
-  <footer class="footer">
-    <div class="footer-navbar">
-      <div class="Footer_nav_logo">
-        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-      </div>
-      <ul class="Footer_nav_links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="tutorialteste.html">Tutoriais</a></li>
-        <li><a href="#">Exercícios</a></li>
-        <li><a href="forum/forums.html">Fórum</a></li>
-        <li><a href="#">Sobre Nós</a></li>
-        <li><a href="#">Contato</a></li>
-      </ul>
+    <!-- Modal para novo tópico -->
+    <div id="new-topic-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeNewTopicModal()">&times;</span>
+            <h2>Novo Tópico</h2>
+            <input type="text" id="new-topic-title" placeholder="Título do tópico">
+            <input type="text" id="new-topic-category" placeholder="Categoria">
+            <button onclick="addNewTopic()">Adicionar Tópico</button>
+        </div>
     </div>
-    <div class="footer-info">
-      <div class="social-links">
-        <a href="https://www.facebook.com/"><i class="fab fa-facebook"><img src="imagens/facebook.png" alt="Imagem do link para facebook"></i></a>
-        
-        <a href="https://www.instagram.com/"><i class="fab fa-instagram"><img src="imagens/instagram.png" alt="Imagem do link para Instagram"></i></a>
-      </div>
-      <div class="contact-info">
-        <p>Telefone: (24) 9999-88888</p>
-        <p>Email: contato@ensinarprogramacao.com</p>
-        <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
-    </div>
-  </footer>
- 
-  <script src="js/script_forum.js"></script>
-  <script src="js/menu-drop.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const navLinks = document.querySelector('.nav_links');
 
-      hamburgerMenu.addEventListener('click', function (event) {
-        event.stopPropagation();
-        navLinks.classList.toggle('open');
-      });
+    <script src="js/script_forum_novo.js"></script>
+    <script src="js/menu-drop.js" defer></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const excluirPost = document.querySelectorAll(".apagar");
+    
+    if (usuario && usuario.tipo === "adm" ) {
+        excluirPost.forEach(botao => {
+            botao.style.display = "block";
+        });
+    } else {
+        excluirPost.forEach(botao => {
+            botao.style.display = "none"; 
+        });
+    }    
+});
+</script>
 
-      document.addEventListener('click', function (event) {
-        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-    function entrar() {
-      document.getElementById('linkIndex').click();
-    }
 
-  </script>
 </body>
-
 </html>
