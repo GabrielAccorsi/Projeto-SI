@@ -109,7 +109,7 @@ function addNewTopic() {
                     <span></span>
                   </button>
                   <div class="lista-opçoes">
-                    <button class="apagar">Excluir</button>
+                    <button onclick="removerTopico()" class="apagar">Excluir</button>
                   </div>
         <p>${novoTopico.category}</p>
     `;
