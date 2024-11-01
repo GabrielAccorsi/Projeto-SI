@@ -62,7 +62,7 @@ function menu() {
         // redirecionamento para a página de posts
         document.querySelector('#Posts').addEventListener('click', function(event) {
             event.preventDefault(); 
-            window.location.href = 'forum/forums.html'; 
+            window.location.href = 'forum.html'; 
         });
 
         // logout

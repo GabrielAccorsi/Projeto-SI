@@ -1,4 +1,4 @@
-// Abrir e fechar o modal de novo tópico
+// Função para abrir e fechar modal do novo tópico
 function openNewTopicModal() {
     document.getElementById('new-topic-modal').style.display = 'flex';
 }
@@ -6,36 +6,18 @@ function openNewTopicModal() {
 function closeNewTopicModal() {
     document.getElementById('new-topic-modal').style.display = 'none';
 }
-function atualizarExibicaoBotoes() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    const excluirPost = document.querySelectorAll(".apagar");
-    const post = document.querySelectorAll(".forum-topic")
 
-    post.forEach(post => {
-        const criadorPost = post.getAttribute("data-usuario")
-    })
-
-    if (usuario && (usuario.tipo === "adm"|| usuario.id === criadorPost)) {
-        excluirPost.forEach(botao => {
-            botao.style.display = "block";
-        });
-    } else {
-        excluirPost.forEach(botao => {
-            botao.style.display = "none"; 
-        });
-    }
-}
-
+// Função para carregar tópicos salvos e exibir na tela
 function carregarTopico() {
     const topicContainer = document.getElementById('topics-container');
-    const topicosSalvos = JSON.parse(localStorage.getItem("topicos")) || []; 
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const topicosSalvos = JSON.parse(localStorage.getItem("topicos")) || [];
 
     topicosSalvos.forEach((topico) => {
         const newTopic = document.createElement('div');
         newTopic.className = 'forum-topic';
         newTopic.setAttribute('data-category', topico.category);
-        newTopic.setAttribute("data-usuario", usuario.id)
+        newTopic.setAttribute('data-usuario', topico.usuarioId || '');
+
         newTopic.innerHTML = `
             <div class="forum-topic-details">
                 <img src="${topico.foto}" alt="Avatar">
@@ -44,25 +26,34 @@ function carregarTopico() {
                     <p>${topico.nome} - ${topico.data}</p>
                 </div>
             </div>
-            <div class="opçoes">
-                <button class="menu-button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </button>
-                  <div class="lista-opçoes">
-                    <button class="apagar">Excluir</button>
-                  </div>
+            <button class="apagar" style="display: none;">Excluir</button>
             <p>${topico.category}</p>
-            
         `;
         topicContainer.appendChild(newTopic);
     });
-    atualizarExibicaoBotoes()
-   
+
+    atualizarExibicaoBotoes(); // Atualiza a exibição dos botões de acordo com o estado do usuário
 }
 
+// Função para atualizar a exibição dos botões de exclusão
+function atualizarExibicaoBotoes() {
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const excluirPost = document.querySelectorAll(".apagar");
 
+    excluirPost.forEach((botao) => {
+        const forumTopic = botao.closest('.forum-topic');
+        const criadorPost = forumTopic.getAttribute("data-usuario");
+
+        // Exibe o botão de exclusão se o usuário for admin ou o criador do post
+        if (usuario && (usuario.tipo === "adm" || usuario.id === criadorPost)) {
+            botao.style.display = "block";
+        } else {
+            botao.style.display = "none";
+        }
+    });
+}
+
+// Função para adicionar um novo tópico
 function addNewTopic() {
     const title = document.getElementById('new-topic-title').value;
     const category = document.getElementById('new-topic-category').value || 'Geral';
@@ -72,58 +63,49 @@ function addNewTopic() {
         return;
     }
 
-    const topicContainer = document.getElementById('topics-container');
     const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    
-
     if (!usuario) {
         alert('Nenhum usuário logado.');
         return;
     }
 
     const novoTopico = {
-        title: title,
-        category: category,
+        title,
+        category,
         foto: usuario.foto,
         nome: usuario.nome,
-        data: new Date().toLocaleString()
+        data: new Date().toLocaleString(),
+        usuarioId: usuario.id
     };
 
+    const topicContainer = document.getElementById('topics-container');
     const newTopic = document.createElement('div');
     newTopic.className = 'forum-topic';
     newTopic.setAttribute('data-category', category);
-    newTopic.setAttribute("data-usuario", usuario.id);
+    newTopic.setAttribute('data-usuario', usuario.id);
 
     newTopic.innerHTML = `
         <div class="forum-topic-details">
             <img src="${novoTopico.foto}" alt="Avatar">
             <div>
                 <h3 class="forum-topic-title"><a href="#">${novoTopico.title}</a></h3>
-                <p> ${novoTopico.nome} - ${novoTopico.data}</p>
+                <p>${novoTopico.nome} - ${novoTopico.data}</p>
             </div>
         </div>
-<div class="opçoes">
-                <button class="menu-button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </button>
-                  <div class="lista-opçoes">
-                    <button onclick="removerTopico()" class="apagar">Excluir</button>
-                  </div>
+        <button class="apagar" style="display: none;">Excluir</button>
         <p>${novoTopico.category}</p>
     `;
     topicContainer.appendChild(newTopic);
 
-    
     const topicosSalvos = JSON.parse(localStorage.getItem("topicos")) || [];
     topicosSalvos.push(novoTopico);
     localStorage.setItem("topicos", JSON.stringify(topicosSalvos));
 
     closeNewTopicModal();
     atualizarExibicaoBotoes();
-    removerTopico()
 }
+
+// Função para remover tópicos e atualizar localStorage
 function removerTopico() {
     const excluirPost = document.querySelectorAll(".apagar");
 
@@ -134,7 +116,6 @@ function removerTopico() {
             atualizarLocalStorage(); 
         });
     });
-    atualizarExibicaoBotoes()
 }
 
 function atualizarLocalStorage() {
