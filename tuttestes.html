@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriais</title>
+    <script src="js/chamar_html.js"></script>
+    <script src="js/menu-drop.js"></script>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/profile-dropdown-menu.css">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search {
+    display: flex;
+    flex-flow: row wrap;
+}
+.search img{
+    max-width: 500px;
+    display: flex;
+    flex-flow: row wrap;
+}
+.search h1,input{
+    display: flex;
+    flex-flow: column wrap;
+    
+}
+.cursos {
+    max-width: max-content;
+    padding: 50px;
+    background-color: #f7f7f7;
+
+}
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+.cards img {
+    background-color: rgb(175, 211, 241);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 25px;
+    max-width: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 80%;
+
+}
+.cards p {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 15px;
+    font-weight: bold;
+    max-width: 80%;
+}
+    </style>
+</head>
+<body>
+    <nav id="navbar" class="navbar"></nav>
+
+    <section class="search">
+        <img src="imagens/Video tutorial-rafiki.png" alt="">
+        <h1>Tutoriais</h1>
+        <input type="text">
+    </section>
+
+    <section class="cursos">
+        <div class="cards">
+            <img src="imagens/devicon--html5.png" alt=""><p>HTML</p>
+            <img src="imagens/devicon--css3.png" alt=""><p>CSS</p>
+            <img src="imagens/devicon--javascript.png" alt=""><p>JAVASCRIPT</p>
+            <img src="imagens/devicon--python.png" alt=""><p>PYTHON</p>
+            <img src="imagens/noto-v1--thinking-face.png" alt=""><p>LÓGICA DE PROGRAMAÇÃO</p>
+        </div>
+    </section>
+    <footer id="footer" class="footer"></footer>
+    
+</body>
+
+</html>
