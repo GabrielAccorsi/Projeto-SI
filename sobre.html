@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprenda a Programar</title>
+  <link rel="stylesheet" href="/css/style_vazio.css"> <!--Mudar para style.css após conclusão da página-->
+  <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="css/profile-dropdown-menu.css">
+  <link rel="stylesheet" href="css/hamburguer.css">
+  <!--link rel="stylesheet" href="css/footer.css"-->
+  <link rel="stylesheet" href="css/footer_forum.css">
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
+  <link rel="stylesheet" href="css/navbar.css">
+    <title>Sobre Nós</title>
+</head>
+<body>
+    <nav class="navbar" id="navbar"></nav>
+    <main>
+        <h1 style="text-align: center;">Página em construção</h1>
+    </main>
+    
+    <!--Inicio rodapé-->
+
+    <footer class="footer">
+        <section class="contact-info">
+            <p>Telefone: (24) 9999-88888</p>
+            <p>Email: contato@ensinarprogramacao.com</p>
+            <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
+        </section>
+    
+        <section class="footer-navbar">
+            <div class="Footer_nav_logo">
+                <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
+            </div>
+            <ul class="Footer_nav_links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tutorialteste.html">Tutoriais</a></li>
+                <li><a href="teste-ferramenta.html">Exercícios</a></li>
+                <li><a href="forum.html">Fórum</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </section>
+    
+        <section class="footer-info">
+            <div class="social-links">
+                <a href="https://www.facebook.com/">
+                    <img src="imagens/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/">
+                    <img src="imagens/instagram.png" alt="Instagram">
+                </a>
+            </div>
+        </section>
+    
+        <div class="footer-bottom">
+            <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <!--Fim do rodapé-->
+
+    <!--Scripts que podem ser realocados para deixar a página mais clean-->
+    <script src="js/script_speak.js"></script>
+    <script src="js/menu-drop.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navLinks = document.querySelector('.nav_links');
+
+      hamburgerMenu.addEventListener('click', function (event) {
+        event.stopPropagation();
+        navLinks.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+    function entrar() {
+      document.getElementById('linkIndex').click();
+    }
+  </script>  
+</body>
+</html>

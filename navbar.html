@@ -3,18 +3,19 @@
 <head>   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
 
   </head>
 
 <div class="nav_logo">
     <img src="imagens/tema_claro.png" alt="Logo" class="logo-img"></div>
   <ul class="nav_links">
-    <li><a href="index.html">Início</a></li>
-    <li><a href="tutorialteste.html">Tutoriais</a></li>
-    <li><a href="teste-ferramenta.html">Exercícios</a></li>
-    <li><a href="forum.html">Fórum</a></li>
-    <li><a href="ms-teste/index.html">Sobre Nós</a></li>
-    <li><a href="#">Contato</a></li>
+    <li><a href="index.html" id="link-home" onmouseover="speakText('Início')">Início</a></li>
+    <li><a href="tutorialteste.html" id="link-tutorial" onmouseover="speakText('Tutoriais')">Tutoriais</a></li>
+    <li><a href="teste-ferramenta.html" id="link-ferramenta" onmouseover="speakText('Exercícios')">Exercícios</a></li>
+    <li><a href="forum.html" id="link-forum" onmouseover="speakText('Fórum')">Fórum</a></li>
+    <li><a href="sobre.html" id="link-sobre" onmouseover="speakText('Sobre nós')">Sobre Nós</a></li>
+    <li><a href="contato.html" id="link-sobre" onmouseover="speakText('Contato')">Contato</a></li>
   </ul>
 
     <!--o bagulho do perfil loucura-->
@@ -23,43 +24,43 @@
       <div class="profile-dropdown-btn">
         <div class="profile-img">
         </div>
-        <span id="nome_entrar">
+        <span id="nome_entrar" onmouseover="speakText('Entrar')">
         </span>
       </div>
 
       <ul class="profile-dropdown-list">
-        <li class="profile-dropdown-list-item">
+        <li class="profile-dropdown-list-item" id="link-perfil" onmouseover="speakText('Perfil')">
           <a href="#" id="Perfil">
             <i class="fa-regular fa-user"></i>
             Perfil
           </a>
         </li>
-        <li class="profile-dropdown-list-item">
+        <li class="profile-dropdown-list-item" id="link-posts" onmouseover="speakText('Posts')">
           <a href="#" id="Posts">
             <i class="fa-regular fa-comments"></i>
             Posts
           </a>
         </li>
-        <li class="profile-dropdown-list-item">
+        <li class="profile-dropdown-list-item" id="link-engajamento" onmouseover="speakText('Engajamento')">
           <a href="#">
             <i class="fa-solid fa-chart-line"></i>
             Engajamento
           </a>
         </li>
-        <li class="profile-dropdown-list-item">
+        <li class="profile-dropdown-list-item" id="link-conf" onmouseover="speakText('Configurações')">
           <a href="#">
             <i class="fa-solid fa-sliders"></i>
             Configurações
           </a>
         </li>
-        <li class="profile-dropdown-list-item">
+        <li class="profile-dropdown-list-item" id="link-suporte" onmouseover="speakText('Suporte')">
           <a href="#">
             <i class="fa-regular fa-circle-question"></i>
             Ajuda e Suporte
           </a>
         </li>
         <hr>
-        <li class="profile-dropdown-list-item">
+        <li class="profile-dropdown-list-item" id="link-deslogar" onmouseover="speakText('Deslogar')">
           <a href="#" id="Deslogar">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             Deslogar
