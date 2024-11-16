@@ -7,16 +7,86 @@
   <title>Aprenda a Programar</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link rel="stylesheet" href="css/profile-dropdown-menu.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  <script src="js/chamar_html.js" defer></script>
-  <script src="js/menu-drop.js" defer></script>
-
+  <link rel="stylesheet" href="css/hamburguer.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
 </head>
 
-<body>
-  <nav class="navbar" id="navbar"> </nav>
+<body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
+  <nav class="navbar">
+    <div class="nav_logo">
+      <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
+    </div>
+    <ul class="nav_links">
+      <li><a href="index.html" id="link-home" onmouseover="speakText('Início')">Início</a></li>
+      <li><a href="tutorialteste.html" id="link-tutorial" onmouseover="speakText('Tutorial')">Tutoriais</a></li>
+      <li><a href="teste-ferramenta.html" id="link-ferramenta" onmouseover="speakText('Ferramenta')">Exercícios</a></li>
+      <li><a href="forum.html" id="link-forum" onmouseover="speakText('Fórum')">Fórum</a></li>
+      <li><a href="cms-teste/index.html" id="link-sobre" onmouseover="speakText('Sobre')">Sobre Nós</a></li>
+      <li><a href="contato.html" id="link-sobre" onmouseover="speakText('Contato')">Contato</a></li>
+    </ul>
+  
+      <!--o bagulho do perfil loucura-->
+     
+      <div class="profile-dropdown">
+        <div class="profile-dropdown-btn">
+          <div class="profile-img">
+          </div>
+          <span id="nome_entrar" onmouseover="speakText('Entrar')">
+          </span>
+        </div>
+
+        <ul class="profile-dropdown-list">
+          <li class="profile-dropdown-list-item" id="link-perfil" onmouseover="speakText('Perfil')">
+            <a href="#" id="Perfil">
+              <i class="fa-regular fa-user"></i>
+              Perfil
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item" id="link-posts" onmouseover="speakText('Posts')">
+            <a href="#" id="Posts">
+              <i class="fa-regular fa-comments"></i>
+              Posts
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item" id="link-engajamento" onmouseover="speakText('Engajamento')">
+            <a href="#">
+              <i class="fa-solid fa-chart-line"></i>
+              Engajamento
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item" id="link-conf" onmouseover="speakText('Configurações')">
+            <a href="#">
+              <i class="fa-solid fa-sliders"></i>
+              Configurações
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item" id="link-suporte" onmouseover="speakText('Suporte')">
+            <a href="#">
+              <i class="fa-regular fa-circle-question"></i>
+              Ajuda e Suporte
+            </a>
+          </li>
+          <hr>
+          <li class="profile-dropdown-list-item" id="link-deslogar" onmouseover="speakText('Deslogar')">
+            <a href="#" id="Deslogar">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Deslogar
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
 
   <section class="intro">
     <div class="intro-container">
@@ -124,12 +194,61 @@
       </div>
     </div>
   </section>
-<!-- funciona!! nao acredito nisso-->
-  <footer class="footer" id="footer"></footer>
+
+  <footer class="footer">
+    <div class="footer-navbar">
+      <div class="Footer_nav_logo">
+        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
+      </div>
+      <ul class="Footer_nav_links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="tutorialteste.html">Tutoriais</a></li>
+        <li><a href="#">Exercícios</a></li>
+        <li><a href="forum/forums.html">Fórum</a></li>
+        <li><a href="#">Sobre Nós</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-info">
+      <div class="social-links">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"><img src="imagens/facebook.png" alt="Imagem do link para facebook"></i></a>
+        
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"><img src="imagens/instagram.png" alt="Imagem do link para Instagram"></i></a>
+      </div>
+      <div class="contact-info">
+        <p>Telefone: (24) 9999-88888</p>
+        <p>Email: contato@ensinarprogramacao.com</p>
+        <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
+    </div>
+  </footer>
  
-  <script src="js/chamar_html.js" defer></script>
+  <script src="js/script_speak.js"></script>
   <script src="js/menu-drop.js" defer></script>
-  <script src="js/haburguer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navLinks = document.querySelector('.nav_links');
+
+      hamburgerMenu.addEventListener('click', function (event) {
+        event.stopPropagation();
+        navLinks.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+    function entrar() {
+      document.getElementById('linkIndex').click();
+    }
+  </script>  
+  
 </body>
 
 </html>
