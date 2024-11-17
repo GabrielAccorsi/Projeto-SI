@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link rel="stylesheet" href="css/profile-dropdown-menu.css">
   <link rel="stylesheet" href="css/hamburguer.css">
-  <!--link rel="stylesheet" href="css/footer.css"-->
   <link rel="stylesheet" href="css/footer.css">
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
   <link rel="stylesheet" href="css/navbar.css">
@@ -18,8 +17,11 @@
 <body>
     <nav class="navbar" id="navbar"></nav>
     <main>
-        <h1 style="text-align: center;">Página em construção</h1>
-    </main>
+      <div style="text-align: center;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/xqBgafn76h0?si=AcDl5Guvo7bvNsvt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+  </main>
+  
     
     <!--Inicio rodapé-->
 
@@ -64,25 +66,6 @@
     <!--Scripts que podem ser realocados para deixar a página mais clean-->
     <script src="js/script_speak.js"></script>
     <script src="js/menu-drop.js" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const navLinks = document.querySelector('.nav_links');
-
-      hamburgerMenu.addEventListener('click', function (event) {
-        event.stopPropagation();
-        navLinks.classList.toggle('open');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-    function entrar() {
-      document.getElementById('linkIndex').click();
-    }
-  </script>  
+    <script src="js/menu.js"></script>  
 </body>
 </html>
