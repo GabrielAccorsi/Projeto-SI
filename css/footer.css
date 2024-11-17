@@ -1,106 +1,89 @@
 /* Estilo geral do rodapé */
-
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-}
-
-footer {
-    background-color:  #2f2841;
-    padding: 10px;
-    font-size: 14px;
-    bottom: 10px;
-}
-
-/* Container 1 logo e social, Container 2 navlinks, contato e copy */
-.container1 {
+.footer {
+    background-color: #2f2841;
+    padding: 20px;
+    width: 100%;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    width: 20% max-content;
+    justify-content: space-between; /* Espaço igual entre seções */
+    align-items: flex-start; /* Alinhamento superior */
+    flex-wrap: wrap; /* Permitir quebra de linha em telas pequenas */
+    gap: 20px; /* Espaçamento entre as seções */
     
 }
-.container2 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    width: 80% max-content;
+
+/* Estilo para cada seção */
+.footer section {
+    flex: 1; /* Cada seção ocupa o mesmo espaço */
+    min-width: 200px; /* Largura mínima para evitar encolhimento excessivo */
 }
 
-.box1 {
+/* Logo e links de navegação */
+.Footer_nav_logo {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #ffffff;
     display: flex;
-    flex-flow: wrap column;
-    align-items: center;
-}
-
-.box2 {
-    box-sizing: border-box;
-    width: auto;
-    flex-basis: 500px;
-    flex-grow: 3;
-    flex-shrink: 1;
-    display: flex;
-    flex-flow: wrap column;
     align-items: center;
 }
 
 .Footer_nav_logo img {
-    margin: 15px;
-    width: 120px;
+    width: 40px;
     height: auto;
-    margin-top: 25px;
-}
-
-/* Ícones sociais e navlinks */
-.fab img{
-    width: 25px;
-    padding: 10px;
-    margin: 5px;
-}
-
-.fab img:hover{
-    width: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
 }
 
 .Footer_nav_links {
+    font-size: 12px;
     list-style: none;
-    padding: 10px;
-    list-style-type: none;
-    margin: 10px;
-    margin-top: 20px;
+    padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Links em coluna */
+    margin-top: 10px;
 }
 
-.Footer_nav_links li {
-    display: flex;
-    padding: 10px;
+/*.Footer_nav_links li a {
+    margin-bottom: 10px;
     color: #fff;
-}
-.Footer_nav_links li a:hover {
-    color: #2EF2CB;
-    font-size: 18px;
-}
-
-.Footer_nav_links a {
     text-decoration: none;
+    
+}*/
+
+.Footer_nav_links li a {
+    margin-bottom: 10px;
     color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transição suave */
+}
+
+.Footer_nav_links li a:hover {
+    color: #007bff; /* Cor azul ao passar o mouse */
+}
+
+/* Ícones sociais */
+.social-links a {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
 }
 
 /* Informações de contato */
-.contact-info p {
-    margin: 10px;
+.contact-info {
+    font-size: 12px;
     color: #fff;
-    display: flex;
-    flex-direction: wrap column;
+    line-height: 1.8;
 }
 
 /* Rodapé inferior */
-.footer-bottom p {
-    margin: 10px;
-    color: #fff;
-    display: flex;
-    flex-direction: wrap column;
+.footer-bottom {
     font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%; /* Ocupa toda a largura */
+    color: #fff;
 }
