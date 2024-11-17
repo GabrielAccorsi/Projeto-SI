@@ -44,19 +44,17 @@ form {
     z-index: 1000;
 }
 
-
 .hamburger-menu {
     z-index: 1010; 
 }
 
-
-.main-login, .left-login, .right-login {
+.main-cadastro, .left-cadastro, .right-cadastro {
     position: relative;
     z-index: 0; 
 }
 
 
-.main-login {
+.main-cadastro {
     width: 100vw;
     height: auto;
     min-height: 100vh;
@@ -68,8 +66,8 @@ form {
     padding: 20px; 
 }
 
-.left-login,
-.right-login {
+.left-cadastro,
+.right-cadastro {
     width: 50%; 
     height: auto;
     display: flex;
@@ -79,24 +77,24 @@ form {
     padding: 20px;
 }
 
-.left-login > h1 {
+.left-cadastro > h1 {
     font-size: 30px;
     color: #2b134b;
     margin-bottom: 20px;
     text-align: center; 
 }
 
-.left-login-image {
+.left-cadastro-image {
     width: 100%;
     max-width: 550px;
 }
 
-.right-login {
+.right-cadastro {
     width: 50%;
     padding: 20px;
 }
 
-.card-login {
+.card-cadastro {
     width: 100%;
     max-width: 500px;
     display: flex;
@@ -109,10 +107,10 @@ form {
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.card-login > h1 {
+.card-cadastro > h1 {
     color: #2b134b;
     font-weight: 800;
-    margin: -22px 0 20px 0;
+    margin: 0;
 }
 
 h2 {
@@ -156,7 +154,7 @@ h2 {
     color: #2b134b;
 }
 
-.textfild .password-eye-icon {
+.password-eye-icon {
     position: absolute;
     text-align: end;
     right: 10px;
@@ -184,7 +182,7 @@ h2 {
     color: #725894;
 }
 
-.btn-login {
+.btn-cadastro {
     width: 100%;
     padding: 16px 0px;
     border: none;
@@ -199,11 +197,11 @@ h2 {
     box-shadow: 0px 10px 40px -12px rgba(0, 0, 0, 0.1);
 }
 
-.btn-login:hover {
+.btn-cadastro:hover {
     background-color: #725894;
 }
 
-/* Botão de alternar*/
+/* Botão de alternar */
 .switch-buttons {
     width: 200px;
     height: 45px;
@@ -240,15 +238,15 @@ h2 {
 }
 
 .left {
-    margin: 14px 0 0 30px;
+    margin: 14px 0 0 22px;
 }
 
 .right {
-    margin: 14px 8px 0 0;
+    margin: 14px 6px 0 0;
 }
 
 #indicator {
-    left: 4px; 
+    left: 96px;
 }
 
 /* Animação */
@@ -274,14 +272,13 @@ h2 {
     }
 }
 
-
 @media (max-width: 768px) {
-    .left-login,
-    .right-login {
+    .left-cadastro,
+    .right-cadastro {
         width: 100%;
     }
 
-    .left-login > h1 {
+    .left-cadastro > h1 {
         font-size: 27px;
         margin-bottom: 10px;
     }
@@ -292,7 +289,7 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    .card-login > h1 {
+    .card-cadastro > h1 {
         font-size: 20px;
     }
 
@@ -300,7 +297,7 @@ h2 {
         font-size: 10pt;
     }
 
-    .btn-login {
+    .btn-cadastro {
         font-size: 12px;
         padding: 12px 0;
     }
