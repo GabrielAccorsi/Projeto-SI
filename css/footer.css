@@ -1,62 +1,86 @@
 /* Estilo geral do rodapé */
-.footer {
-    background-color: #2f2841;
-    padding: 20px;
-    text-align: center;
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    background-color:  #2f2841;
+    padding: 10px;
     font-size: 14px;
     bottom: 10px;
-    width: 100%;
-    
 }
 
-/* Logo e links de navegação */
-.Footer_nav_logo {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #ffffff;
-    justify-content: center;
+/* Container 1 logo e social, Container 2 navlinks, contato e copy */
+.container1 {
     display: flex;
-    align-items: center;
-    font-weight: 600;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 20% max-content;
     
-
 }
-.footer p{
-    padding: 0;
-    font-size: 18px;
+.container2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 80% max-content;
+}
 
+.box1 {
+    display: flex;
+    flex-flow: wrap column;
+    align-items: center;
+}
+
+.box2 {
+    box-sizing: border-box;
+    width: auto;
+    flex-basis: 500px;
+    flex-grow: 3;
+    flex-shrink: 1;
+    display: flex;
+    flex-flow: wrap column;
+    align-items: center;
 }
 
 .Footer_nav_logo img {
-width: 40px;
-height: auto;
-margin-right: 10px;
-border-radius: 50%;
+    margin: 15px;
+    width: 120px;
+    height: auto;
+    margin-top: 25px;
 }
 
+/* Ícones sociais e navlinks */
+.fab img{
+    width: 25px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.fab img:hover{
+    width: 30px;
+}
 
 .Footer_nav_links {
     list-style: none;
-    padding: 0;
-    
+    padding: 10px;
     list-style-type: none;
+    margin: 10px;
+    margin-top: 20px;
     display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center; 
+    justify-content: center;
 }
 
-
- .footer_nav_links li a{
-    display: inline-block;
-    margin-right: 15px;
-    color: #fff;
-}
 .Footer_nav_links li {
-    display: inline-block;
-    margin-right: 15px;
+    display: flex;
+    padding: 10px;
     color: #fff;
+}
+.Footer_nav_links li a:hover {
+    color: #2EF2CB;
+    font-size: 18px;
 }
 
 .Footer_nav_links a {
@@ -64,29 +88,19 @@ border-radius: 50%;
     color: #fff;
 }
 
-/* Ícones sociais */
-.social-links {
-    margin-top: 20px;
-}
-.social-links a {
-    margin-right: 10px;
-    color: #2f2841;
-    font-size: 20px;
-}
-.fab img{
-    width: 30px;
-    justify-content: center;
-
-}
-
 /* Informações de contato */
-.contact-info {
-    margin-top: 20px;
+.contact-info p {
+    margin: 10px;
     color: #fff;
+    display: flex;
+    flex-direction: wrap column;
 }
 
 /* Rodapé inferior */
-.footer-bottom {
-    margin-top: 20px;
+.footer-bottom p {
+    margin: 10px;
     color: #fff;
+    display: flex;
+    flex-direction: wrap column;
+    font-size: 12px;
 }
