@@ -144,7 +144,6 @@ h2 {
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD
 .textfild > textarea {
     width: 100%;
     border: none;
@@ -163,21 +162,15 @@ h2 {
     margin-bottom: 10px;
 }
 
-=======
->>>>>>> 92c81b69d941c0930594663f8fe969ef1fa25426
 .textfild > input::placeholder {
     color: #aaa;
 }
 
-<<<<<<< HEAD
 .textfild > textarea::placeholder {
     color: #aaa;
 }
 
 #togglePassword{
-=======
-.icons {
->>>>>>> 92c81b69d941c0930594663f8fe969ef1fa25426
     position: absolute;
     left: 10px;
     top: 50%;
