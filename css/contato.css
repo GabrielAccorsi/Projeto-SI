@@ -181,6 +181,17 @@ form {
     color: #aaa;
 }
 
+/* Estilos para a área de mensagem */
+textarea {
+    width: 100%; /* Largura da área de texto */
+    height: 100px; /* Altura fixa para a área de texto */
+    resize: none; /* Impede o redimensionamento */
+    padding: 10px; /* Adiciona um pequeno espaçamento interno */
+    border: 1px solid #ccc; /* Borda suave */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Faz com que o padding seja considerado no tamanho total */
+}
+
 #togglePassword{
     position: absolute;
     padding: 10px;

@@ -4,22 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aprenda a Programar</title>
-  <link rel="stylesheet" href="/css/style_vazio.css"> <!--Mudar para style.css após conclusão da página-->
+  <link rel="stylesheet" href="css/contato.css">
+  <link rel="stylesheet" href="css/style.css"> <!--Mudar para style.css após conclusão da página-->
   <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <link rel="stylesheet" href="css/profile-dropdown-menu.css">
   <link rel="stylesheet" href="css/hamburguer.css">
-  <!--link rel="stylesheet" href="css/footer.css"-->
-  <link rel="stylesheet" href="css/footer_forum.css">
+  <link rel="stylesheet" href="css/footer.css"><!--Talvez seja retirado-->
+  <link rel="stylesheet" href="css/footer_forum.css"><!--Talvez seja retirado-->
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
   <link rel="stylesheet" href="css/navbar.css">
-    <title>Contato</title>
+  <title>Contato</title>
 </head>
 <body>
     <nav class="navbar" id="navbar"></nav>
     <main>
-        <h1 style="text-align: center;">Página em construção</h1>
-    </main>
+      <div class="main-login">
+          <div class="left-login">
+              <h1>Fale Conosco!</h1>
+              <img src="animaçao.svg" class="left-login-image" alt="Imagem animada">
+          </div>
+          <div class="right-login">
+              <div class="card-login">
+                  <h1>Fale Conosco</h1>
+                  <form id="contactForm">
+                      <div class="textfild">
+                          <label for="email">Email</label>
+                          <input type="email" name="email" placeholder="Digite seu email" id="email" required>
+                      </div>
+                      <div class="textfild">
+                          <label for="assunto">Assunto</label>
+                          <input type="text" name="assunto" placeholder="Digite o assunto" id="assunto" required>
+                      </div>
+                      <div class="textfild">
+                          <label for="mensagem">Mensagem</label>
+                          <textarea name="mensagem" placeholder="Digite sua mensagem" id="mensagem" required></textarea>
+                      </div>
+                      <p id="incorreto"></p>
+                      <button type="submit" class="btn-login">Enviar</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </main> 
 
     <!--Inicio rodapé-->
 
@@ -61,28 +88,11 @@
     </footer>
     <!--Fim do rodapé-->
 
-    <!--Scripts que podem ser realocados para deixar a página mais clean-->
+    
     <script src="js/script_speak.js"></script>
     <script src="js/menu-drop.js" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const navLinks = document.querySelector('.nav_links');
+    <!--script src="js/menu.js"></script--> <!--Retirar depois se for inútil-->  
+    <script src="js/contato.js"></script>
 
-      hamburgerMenu.addEventListener('click', function (event) {
-        event.stopPropagation();
-        navLinks.classList.toggle('open');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-    function entrar() {
-      document.getElementById('linkIndex').click();
-    }
-  </script>  
 </body>
 </html>
