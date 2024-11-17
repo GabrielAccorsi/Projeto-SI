@@ -1,4 +1,4 @@
-body, html {
+body{
     margin: 0;
     padding: 0;
     height: 100%;
@@ -6,6 +6,7 @@ body, html {
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .header {
     background-color: #4CAF50;
     color: white;
@@ -18,6 +19,8 @@ body, html {
 .header {
     top: 0;
 }
+=======
+>>>>>>> 92c81b69d941c0930594663f8fe969ef1fa25426
 
 main {
     display: flex;

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/footer_forum.css">
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
   <link rel="stylesheet" href="css/navbar.css">
+  <script src="js/chamar_html.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
         <h1>Aprenda a programar gratuitamente</h1>
         <p>Tem interesse em aprender programação? Conheça nossa nova plataforma de tutoriais interativos e gratuitos
           para se tornar um programador de sucesso. Comece sua jornada de codificação hoje!</p>
-        <button class="cta-button" onclick="entrar()">Aprenda Agora</button>
+          <button class="cta-button" onclick="window.location.href='cadastro.html'">Aprenda Agora</button>
       </div>
       <img src="animaçao copy.svg" alt="Aprenda a Programar" class="intro-image">
     </div>
@@ -126,6 +127,7 @@
     </div>
   </section>
 
+<<<<<<< HEAD
       <!--Inicio rodapé-->
 
       <footer class="footer">
@@ -165,29 +167,12 @@
         </div>
     </footer>
     <!--Fim do rodapé-->
+=======
+  <footer id="footer" class="footer"></footer>
+>>>>>>> 92c81b69d941c0930594663f8fe969ef1fa25426
  
   <script src="js/script_speak.js"></script>
   <script src="js/menu-drop.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const navLinks = document.querySelector('.nav_links');
-
-      hamburgerMenu.addEventListener('click', function (event) {
-        event.stopPropagation();
-        navLinks.classList.toggle('open');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-    function entrar() {
-      document.getElementById('linkIndex').click();
-    }
-  </script>  
   
 </body>
 
