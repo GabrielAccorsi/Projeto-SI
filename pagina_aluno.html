@@ -1,163 +1,292 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/profile-dropdown-menu.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="imagens/logo_atual.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/profile-dropdown-menu.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<title>Página do Aluno</title>
 
-    <style>
-      body{
-        background: linear-gradient(120deg, rgb(29, 29, 66),rgb(41, 5, 32));
-        
-      }
-      main{
-        color: white;
-      }
-      h2{
-        text-align: center;
-        padding: 20px;
-        font-size: 35px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-      }
-      p{
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-        padding: 20px;
-        font-size:25px;
-      }
-    </style>
-    <title>Página do Aluno</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  margin-top: 100px;
+  display: flex;
+  width: 900px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 30%;
+  text-align: center;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 3px solid black;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  margin: 20px 0;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.social-links p {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 14px;
+    color: #007bff;
+}
+
+.social-links i {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #007bff;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+  width: 70%;
+  padding: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+  text-transform: capitalize;
+}
+
+.tab.active {
+  color: #309b69;
+  border-bottom: 2px solid #309b69;
+}
+
+.info h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.info h2 {
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.info p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+
+.interests {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.interests i {
+    font-size: 50px;
+    color: #ff5722;
+}
+
+.interests i:nth-child(2) {
+    color: #2965f1;
+}
+
+.interests i:nth-child(3) {
+    color: #f7df1e;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.nav_links {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav_links li {
+  margin: 0 15px;
+}
+
+.nav_links a {
+  text-decoration: none;
+  color: #333;
+}
+</style>
 </head>
-<body><a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
-    <nav class="navbar">
-      <div class="nav_logo">
-        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-      </div>
-      <ul class="nav_links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="tutorialteste.html">Tutoriais</a></li>
-        <li><a href="#">Exercícios</a></li>
-        <li><a href="forum.html">Fórum</a></li>
-        <li><a href="#">Sobre Nós</a></li>
-        <li><a href="#">Contato</a></li>
-      </ul>
-      <div class="profile-dropdown">
-        <div class="profile-dropdown-btn">
-          <div class="profile-img">
-          </div>
-          <span id="nome_entrar">
-          </span>
-        </div>
+<body>
+  <a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
 
-        <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Perfil">
-              <i class="fa-regular fa-user"></i>
-              Perfil
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Posts">
-              <i class="fa-regular fa-comments"></i>
-              Posts
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-chart-line"></i>
-              Engajamento
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Configurações
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-circle-question"></i>
-              Ajuda e Suporte
-            </a>
-          </li>
-          <hr>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Deslogar">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Deslogar
-            </a>
-          </li>
+    <nav class="navbar">
+        <div class="nav_logo">
+            <img src="imagens/tema_claro.png" alt="Logo" class="logo-img">
+        </div>
+        <ul class="nav_links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="tutorialteste.html">Tutoriais</a></li>
+            <li><a href="#">Exercícios</a></li>
+            <li><a href="forum.html">Fórum</a></li>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Contato</a></li>
         </ul>
-      </div>
-      <div class="hamburger-menu" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </nav>
-    <main>
-    <h2>Bem-vindo à Página do Aluno!</h2>
-    <p>Conteúdo exclusivo para alunos.</p>
-  </main>
+
+    <div class="container">
+        <aside class="sidebar">
+            <img class="profile-img" src="imagens/peter.avif" alt="Peter Reys">
+            <h2>Peter Reys</h2>
+            <p class="id">FuturoDevPeter</p>
+            <button class="edit-button">Editar perfil</button>
+            <p class="description">
+                Estudante de programação apaixonado por desenvolver soluções criativas.
+                Focado em front-end e sempre buscando aprender novas tecnologias para transformar ideias em projetos reais.
+            </p>
+            <div class="social-links">
+              <p>
+                  <i class="fab fa-instagram"></i>
+                  <a href="https://instagram.com/peeter_reys" target="_blank">@peeter_reys</a>
+              </p>
+              <p>
+                  <i class="fab fa-linkedin"></i>
+                  <a href="https://linkedin.com/in/peter-reys" target="_blank">Peter Reys</a>
+              </p>
+              <p>
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:contatopeter@gmail.com">contatopeter@gmail.com</a>
+              </p>
+          </div>          
+        </aside>
+
+        <main class="main-content">
+            <nav class="tabs">
+                <span class="tab active">visão geral</span>
+                <span class="tab">projetos</span>
+                <span class="tab">progresso</span>
+            </nav>
+            <section class="info">
+                <h1>Olá! Eu sou o Peter🧑‍💻✨</h1>
+                <h2>Sobre Mim:</h2>
+                  <p>Estudante apaixonado por programação, com foco em front-end🧑‍💻</p>
+                  <p>Busco constantemente aprender novas tecnologias💡</p>
+                  <p>Determinado a criar soluções criativas para problemas do dia a dia🚀</p>
+                <h2>Meus Interesses e Habilidades:</h2>
+            <div class="interests">
+                <i class="fab fa-html5" title="HTML5"></i>
+                <i class="fab fa-css3-alt" title="CSS3"></i>
+                <i class="fab fa-js-square" title="JavaScript"></i>
+            </div>
+                <h2> Tecnologias Favoritas:</h2>
+                <p>Construção de interfaces incríveis e funcionais🌐</p>
+                <p>Desenvolvimento responsivo e design moderno📱</p>
+                <p>Sempre aprendendo novas ferramentas e frameworks📈</p>
+                <h2>Frases:</h2>
+                <p>"Transformando linhas de código em ideias incríveis todos os dias." 💻💡</p>
+                <p>"Códigos com mais fé do que funcionalidade!" 😅</p>
+            </section>
+        </main>
+    </div>
+
     <script src="js/menu-drop.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const navLinks = document.querySelector('.nav_links');
-  
-        hamburgerMenu.addEventListener('click', function (event) {
-          event.stopPropagation();
-          navLinks.classList.toggle('open');
-        });
-  
-        document.addEventListener('click', function (event) {
-          if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-            navLinks.classList.remove('open');
-          }
-        });
-      });
-      function entrar() {
-        document.getElementById('linkIndex').click();
-      }
-  
-    </script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav_links');
 
-<footer class="footer" style="position: absolute;">
-  <div class="footer-navbar">
-    <div class="Footer_nav_logo">
-      <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-    </div>
-    <ul class="Footer_nav_links">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="#">Tutoriais</a></li>
-      <li><a href="#">Exercícios</a></li>
-      <li><a href="forum.html">Fórum</a></li>
-      <li><a href="#">Sobre Nós</a></li>
-      <li><a href="#">Contato</a></li>
-    </ul>
-  </div>
-  <div class="footer-info">
-    <div class="social-links">
-      <a href="https://www.facebook.com/"><i class="fab fa-facebook"><img src="imagens/facebook.png" alt="Imagem do link para facebook"></i></a>
-      
-      <a href="https://www.instagram.com/"><i class="fab fa-instagram"><img src="imagens/instagram.png" alt="Imagem do link para Instagram"></i></a>
-    </div>
-    <div class="contact-info">
-      <p>Telefone: (24) 9999-88888</p>
-      <p>Email: contato@ensinarprogramacao.com</p>
-      <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
-  </div>
-</footer>
+            hamburgerMenu.addEventListener('click', function (event) {
+                event.stopPropagation();
+                navLinks.classList.toggle('open');
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+                    navLinks.classList.remove('open');
+                }
+            });
+        });
+
+        function entrar() {
+            document.getElementById('linkIndex').click();
+        }
+    </script>
 </body>
 </html>
