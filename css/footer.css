@@ -43,13 +43,6 @@
     margin-top: 10px;
 }
 
-/*.Footer_nav_links li a {
-    margin-bottom: 10px;
-    color: #fff;
-    text-decoration: none;
-    
-}*/
-
 .Footer_nav_links li a {
     margin-bottom: 10px;
     color: #fff;
@@ -87,3 +80,4 @@
     width: 100%; /* Ocupa toda a largura */
     color: #fff;
 }
+

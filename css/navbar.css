@@ -1,4 +1,25 @@
 .navbar {
+    position: fixed; /* Fixa o menu no topo da tela */
+    top: 0; /* Define que ele fica no topo */
+    left: 0; /* Alinha o menu à esquerda */
+    width: 100%; /* Faz o menu ocupar toda a largura da tela */
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+    background-color: #ffffff; /* Cor de fundo para cobrir sobreposição */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona sombra para destaque */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    font-size: 1rem;
+}
+
+main {
+    margin-top: 100px; /* Adiciona espaçamento para evitar sobreposição do conteúdo */
+}
+
+/*.navbar { apagar depois todo a parte comentada
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,7 +28,7 @@
     flex-wrap: wrap;
     font-size: 1rem;
 
-}
+}*/
 
 .nav_logo {
     display: flex;
