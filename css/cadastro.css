@@ -146,6 +146,12 @@ h2 {
     color: #aaa;
 }
 
+.textfild > input:focus {
+    border-color: #2b134b;
+    box-shadow: 0 0 8px #6a4c9c; 
+    background-color: #ece6f5; 
+}
+
 .icons {
     position: absolute;
     left: 10px;
@@ -195,6 +201,7 @@ h2 {
     background-color: #2b134b;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
 }
 
 .btn-cadastro:hover {
@@ -263,14 +270,69 @@ h2 {
     animation: fadeOut 0.3s ease-out forwards;
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.9;
-    }
+.valid {
+    color: green;
+    font-size: 5px;
 }
+
+.invalid {
+    color: red;
+    font-size: 13px;
+}
+
+#passwordRules p, .error-message {
+    margin: 2px 0; 
+    font-size: 12px; 
+}
+
+.hidden {
+    display: none;
+}
+
+#alertBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    padding: 40px 30px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.alertContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#alertMessage {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+#alertOkButton {
+    background-color: #2b134b;
+    color: #fff;
+    border: none;
+    padding: 15px 50px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+#alertOkButton:hover {
+    background-color: #6a4c9c;
+}
+
 
 @media (max-width: 768px) {
     .left-cadastro,

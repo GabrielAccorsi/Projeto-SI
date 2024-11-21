@@ -144,33 +144,18 @@ h2 {
     box-sizing: border-box;
 }
 
-.textfild > textarea {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    background: #f0f0f0;
-    color: #333;
-    font-size: 12pt;
-    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
-    outline: none;
-    box-sizing: border-box;
-}
-
-.textfild > label {
-    color: #333;
-    margin-bottom: 10px;
-}
-
 .textfild > input::placeholder {
     color: #aaa;
 }
 
-.textfild > textarea::placeholder {
-    color: #aaa;
+.textfild > input:focus {
+    border-color: #2b134b;
+    box-shadow: 0 0 8px #6a4c9c; 
+    background-color: #ece6f5; 
 }
 
-#togglePassword{
+
+.icons {
     position: absolute;
     left: 10px;
     top: 50%;
@@ -219,6 +204,7 @@ h2 {
     background-color: #2b134b;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 .btn-login:hover {
@@ -286,6 +272,69 @@ h2 {
 .fade-out {
     animation: fadeOut 0.3s ease-out forwards;
 }
+
+.valid {
+    color: green;
+    font-size: 5px;
+}
+
+.invalid {
+    color: red;
+    font-size: 13px;
+}
+
+.error-message {
+    margin: 2px 0; 
+    font-size: 12px; 
+}
+
+.hidden {
+    display: none;
+}
+
+#alertBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    padding: 40px 30px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.alertContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#alertMessage {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+#alertOkButton {
+    background-color: #2b134b;
+    color: #fff;
+    border: none;
+    padding: 15px 50px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+#alertOkButton:hover {
+    background-color: #6a4c9c;
+}
+
 
 @keyframes fadeOut {
     from {
