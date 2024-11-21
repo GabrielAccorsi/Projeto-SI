@@ -198,19 +198,6 @@ const firebaseConfig = {
           })
   })
   
-  // facebook
-  document.getElementById('facebook-login').addEventListener('click', () => {
-      const provider = new firebase.auth.FacebookAuthProvider()
-  
-      firebase.auth().signInWithPopup(provider)
-          .then(() => {
-              window.location.href = "pagina_aluno.html"
-          })
-          .catch((error) => {
-              showAlert("Erro ao logar com Facebook.")
-          })
-  })
-  
   // gitHub
   document.getElementById('login-github').addEventListener('click', () => {
       const provider = new firebase.auth.GithubAuthProvider()
