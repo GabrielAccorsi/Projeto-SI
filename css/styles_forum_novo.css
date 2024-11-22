@@ -1,5 +1,21 @@
 /* Estilo básico */
 
+/* Garante que o body preencha toda a altura da tela */
+html, body {
+    height: 100%;
+    margin: 0; /* Remove margens padrão */
+    display: flex;
+    flex-direction: column; /* Layout principal em coluna */
+}
+
+/* Garante que o main ocupe o espaço restante */
+main {
+    flex: 1; /* Faz o main ocupar todo o espaço disponível */
+    /*display: flex; /* Habilita o flexbox no main ESSE CARA BAGUNÇA O FORUM*/
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+}
+
 header {
     background-color: #1a1a1a;
     padding: 15px;
