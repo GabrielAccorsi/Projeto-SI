@@ -33,6 +33,7 @@ body {
     gap: 20px;
     max-width: 1200px;
     margin: auto;
+    margin-top: 30px;
 }
 
 .intro-text {
