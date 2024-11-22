@@ -2,7 +2,18 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprenda a Programar</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="css/profile-dropdown-menu.css">
+  <link rel="stylesheet" href="css/hamburguer.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/footer_sobre.css">
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
+  <link rel="stylesheet" href="css/navbar.css">
+  <script src="js/chamar_html.js"></script>
     <title>Mensagens Recebidas</title>
     <style>
         body {
@@ -33,10 +44,12 @@
         }
     </style>
 </head>
+<nav class="navbar" id="navbar"></nav>
 <body>
     <h1>Mensagens Recebidas</h1>
-    <div id="mensagensContainer"></div>
-
+    <main>
+        <div id="mensagensContainer"></div>
+    </main>
     <script>
         // Função para carregar as mensagens do localStorage
         function carregarMensagens() {
@@ -73,5 +86,11 @@
         // Carrega as mensagens ao carregar a página
         window.onload = carregarMensagens;
     </script>
+    <!--Inicio rodapé-->
+    <footer class="footer" id="footer"></footer>
+    <!--Fim do rodapé-->
+
+<script src="js/script_speak.js"></script>
+<script src="js/menu-drop.js" defer></script>
 </body>
 </html>

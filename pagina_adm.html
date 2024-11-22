@@ -1,205 +1,304 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/logo_atual.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/profile-dropdown-menu.css">
-    <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/footer.css">
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <link rel="stylesheet" href="css/navbar.css">
-    <title>Página do Administrador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Página do ADM</title>
+    
     <style>
-        body{
-          background: linear-gradient(120deg, rgb(29, 29, 66),rgb(41, 5, 32));
-          
-        }
-        main{
-        color: white;
-      }
-        h2{
-          padding: 10px;
-          margin: 10px;
-        }
-        p{
-          padding: 10px;
-        }
-        button{
-          border-radius: 15px;
-          padding: 5px;
-          margin: 10px;
-        }
-        .perfil {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 35px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .perfil img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 20px;
-
-        }
-
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-      <div class="nav_logo">
-        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-      </div>
-      <ul class="nav_links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="tutorialteste.html">Tutoriais</a></li>
-        <li><a href="#">Exercícios</a></li>
-        <li><a href="forum.html">Fórum</a></li>
-        <li><a href="#">Sobre Nós</a></li>
-        <li><a href="#">Contato</a></li>
-      </ul>
-
-      <div class="profile-dropdown">
-        <div class="profile-dropdown-btn">
-          <div class="profile-img">
-          </div>
-          <span id="nome_entrar">
-          </span>
-        </div>
-
-        <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Perfil">
-              <i class="fa-regular fa-user"></i>
-              Perfil
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Posts">
-              <i class="fa-regular fa-comments"></i>
-              Posts
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-chart-line"></i>
-              Engajamento
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Configurações
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-circle-question"></i>
-              Ajuda e Suporte
-            </a>
-          </li>
-          <hr>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Deslogar">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Deslogar
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <div class="hamburger-menu" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </nav>
-    <main>
-    <div class="perfil">
-        <img id="fotoPerfil" src="" alt="Foto de Perfil">
-        <span id="nomeUsuario"></span>
-    </div>
-
-    <h2>Bem-vindo à Página do Administrador!</h2>
-    <p>Conteúdo exclusivo para administradores.</p>
-
-    <button onclick="listarUsuarios()">Listar usuários</button>
-    <button onclick="cadastrar()">Cadastrar</button><br>
-    <div id="listausr">
-        
-    </div>
-
-  </main>
-    <script src="js/scriptlogin.js"></script>
-    <script src="js/menu-drop.js"></script>
-    <script>
-        // Carrega as informações do usuário do localStorage
-        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-        if (usuarioLogado) {
-            document.getElementById('fotoPerfil').src = usuarioLogado.foto;
-            document.getElementById('nomeUsuario').textContent = usuarioLogado.nome;
-        } else {
-            alert('Nenhum usuário logado!');
-        }
-
-      
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const navLinks = document.querySelector('.nav_links');
-
-      hamburgerMenu.addEventListener('click', function (event) {
-        event.stopPropagation();
-        navLinks.classList.toggle('open');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-    function entrar() {
-      document.getElementById('linkIndex').click();
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-
-    </script>
-
-<footer class="footer" style="position: absolute;">
-  <div class="footer-navbar">
-    <div class="Footer_nav_logo">
-      <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-    </div>
-    <ul class="Footer_nav_links">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="tutorialteste.html">Tutoriais</a></li>
-      <li><a href="#">Exercícios</a></li>
-      <li><a href="forum.html">Fórum</a></li>
-      <li><a href="#">Sobre Nós</a></li>
-      <li><a href="#">Contato</a></li>
-    </ul>
-  </div>
-  <div class="footer-info">
-    <div class="social-links">
-      <a href="https://www.facebook.com/"><i class="fab fa-facebook"><img src="imagens/facebook.png" alt="Imagem do link para facebook"></i></a>
-      
-      <a href="https://www.instagram.com/"><i class="fab fa-instagram"><img src="imagens/instagram.png" alt="Imagem do link para Instagram"></i></a>
-    </div>
-    <div class="contact-info">
-      <p>Telefone: (24) 9999-88888</p>
-      <p>Email: contato@ensinarprogramacao.com</p>
-      <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
-  </div>
-</footer>
-</body>
-</html>
-
+    
+    .container {
+      margin-top: 100px;
+      display: flex;
+      width: 900px;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .sidebar {
+      background-color: #f2f2f2;
+      padding: 20px;
+      width: 30%;
+      text-align: center;
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid black;
+    }
+    
+    .edit-button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+    
+    .edit-button:hover {
+      background-color: #0056b3;
+    }
+    
+    .description {
+      font-size: 14px;
+      color: #555;
+      margin: 20px 0;
+    }
+    
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .social-links p {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-size: 14px;
+        color: #007bff;
+    }
+    
+    .social-links i {
+        margin-right: 8px;
+        font-size: 16px;
+        color: #007bff;
+    }
+    
+    .social-links a {
+        text-decoration: none;
+        color: #007bff;
+    }
+    
+    .social-links a:hover {
+        text-decoration: underline;
+    }
+    
+    .main-content {
+      width: 70%;
+      padding: 20px;
+    }
+    
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    
+    .tab {
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #555;
+      text-transform: capitalize;
+    }
+    
+    .tab.active {
+      color: #309b69;
+      border-bottom: 2px solid #309b69;
+    }
+    
+    .info h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    
+    .info h2 {
+      font-size: 20px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    
+    .info p {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    
+    
+    .interests {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .interests i {
+        font-size: 50px;
+    }
+    
+    .interests i:nth-child(2) {
+        color: #f7df1e;
+    }
+    .python-icon::before {
+    content: "\f3e2";
+    font-family: "Font Awesome 5 Brands"; 
+    font-size: 50px;
+    background: linear-gradient(150deg, #3572A5 50%, #FFD43B 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    }
+    
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    
+    .nav_links {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .nav_links li {
+      margin: 0 15px;
+    }
+    
+    .nav_links a {
+      text-decoration: none;
+      color: #333;
+    }
+    </style>
+    </head>
+    <body>
+      <a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
+    
+        <nav class="navbar">
+            <div class="nav_logo">
+                <img src="imagens/tema_claro.png" alt="Logo" class="logo-img">
+            </div>
+            <ul class="nav_links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tutorialteste.html">Tutoriais</a></li>
+                <li><a href="#">Exercícios</a></li>
+                <li><a href="forum.html">Fórum</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    
+        <div class="container">
+            <aside class="sidebar">
+                <img class="profile-img" src="imagens/Larissa.jpg" alt="Peter Reys">
+                <h2>Larissa Manuela</h2>
+                <p class="id">Professora</p>
+                <button class="edit-button">Editar perfil</button>
+                <p class="description">
+                  Sou Professora de TI, Tenho uma graduação em Ciência da Computação, com especialização em Engenharia de Software. Durante minha carreira acadêmica,Se precisar de alguma ajuda específica em TI, posso simular essa função e orientá-lo com prazer!
+                </p>
+                <div class="social-links">
+                  <p>
+                      <i class="fab fa-instagram"></i>
+                      <a href="https://instagram.com/larissa_manu" target="_blank">@Larissa_Manu</a>
+                  </p>
+                  <p>
+                      <i class="fab fa-linkedin"></i>
+                      <a href="https://linkedin.com/in/larissa-manu" target="_blank">Larissa Manuela</a>
+                  </p>
+                  <p>
+                      <i class="fas fa-envelope"></i>
+                      <a href="mailto:contatolarissa@gmail.com">contatolarissa@gmail.com</a>
+                  </p>
+              </div>          
+            </aside>
+    
+            <main class="main-content">
+                <nav class="tabs">
+                    <span class="tab active">visão geral</span>
+                    <span class="tab">Exercícios</span>
+                    <span class="tab">Notas/Faltas</span>
+                </nav>
+                <section class="info">
+                    <h1>Olá! Eu sou Larissa</h1>
+                    <h2>Sobre Mim:</h2>
+                      <p>possuo diversas certificações técnicas, incluindo certificações em redes de computadores,</p>
+                      <p>desenvolvimento de software e infraestrutura de TI também fiz uma pós-graduação em Inteligência Artificial e um curso de extensão em Segurança da Informação.💡</p>
+                      
+                    <h2>Linguagens Utilizadas:</h2>
+                <div class="interests">
+                    <i class="fa-brands fa-python python-icon"></i>
+                    <i class="fab fa-js-square" title="JavaScript"></i>
+                </div>
+                    <h2> Tecnologias Favoritas:</h2>
+                    <p>Jupyter Notebooks: Perfeito para testes e aprendizado interativo de código.</p>
+                    <p>VS Code: Uma IDE leve, personalizável e poderosa.</p>
+                    <p>PyCharm: Ideal para grandes projetos com funcionalidades avançadas para Python.</p>
+                    <p>React.js: Uma das bibliotecas mais populares para criar interfaces de usuário dinâmicas. Ótima para SPAs (Single Page Applications).</p>
+                    <p>jQuery: Embora esteja menos popular atualmente, ainda é útil para manipulações simples de DOM em projetos legados.</p>
+                </section>
+            </main>
+        </div>
+    
+        <script src="js/menu-drop.js"></script>
+        <script>
+          // Carrega as informações do usuário do localStorage
+          const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+  
+          if (usuarioLogado) {
+              document.getElementById('fotoPerfil').src = usuarioLogado.foto;
+              document.getElementById('nomeUsuario').textContent = usuarioLogado.nome;
+          } else {
+              alert('Nenhum usuário logado!');
+          }
+  
+        
+      document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav_links');
+  
+        hamburgerMenu.addEventListener('click', function (event) {
+          event.stopPropagation();
+          navLinks.classList.toggle('open');
+        });
+  
+        document.addEventListener('click', function (event) {
+          if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+            navLinks.classList.remove('open');
+          }
+        });
+      });
+      function entrar() {
+        document.getElementById('linkIndex').click();
+      }
+  
+      </script>
+    </body>
+    </html>
