@@ -13,7 +13,7 @@ let usuarios = [
       nome: 'Gabriel',
       email: 'gabriel@gmail.com',
       tipo: 'adm',
-      senha: 'gaga2',
+      senha: 'Gaga@2024',
       foto: 'imagens/gabriel.png' // Caminho para a foto de perfil
   },
   {
