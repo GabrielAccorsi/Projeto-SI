@@ -105,29 +105,33 @@ document.getElementById('cadastroForm').addEventListener('submit', (event) => {
 
     // usuário
     auth.createUserWithEmailAndPassword(email, senha)
-        .then((userCredential) => {
-            const user = userCredential.user
+    .then((userCredential) => {
+        const user = userCredential.user;
 
-            database.ref('users/' + user.uid).set({
-                nome: nome,  
-                email: email
-            }).then(() => {
-                if (email.endsWith('@admin.com')) {
-                    window.location.href = "pagina_adm.html"
-                } else {
-                    window.location.href = "pagina_aluno.html"
-                }
-            })
-        })
-        .catch((error) => {
-            const errorCode = error.code
+        // Adiciona o tipo de usuário ao banco de dados
+        const tipo = email.endsWith('@admin.com') ? 'adm' : 'aluno';
 
-            if (errorCode === 'auth/email-already-in-use') {
-                showAlert("O e-mail inserido já está cadastrado. Tente usar outro e-mail ou faça login.")
+        database.ref('users/' + user.uid).set({
+            nome: nome,
+            email: email,
+            tipo: tipo // Adiciona o tipo do usuário
+        }).then(() => {
+            if (tipo === 'adm') {
+                window.location.href = "pagina_adm.html";
             } else {
-                showAlert("Por favor, preencha todos os campos corretamente.")
+                window.location.href = "pagina_aluno.html";
             }
-        })
+        });
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode === 'auth/email-already-in-use') {
+            showAlert("O e-mail inserido já está cadastrado. Tente usar outro e-mail ou faça login.");
+        } else {
+            showAlert("Por favor, preencha todos os campos corretamente.");
+        }
+    });
+
 })
 
 // validar nome

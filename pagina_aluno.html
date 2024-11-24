@@ -8,201 +8,29 @@
 <link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/profile-dropdown-menu.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet" href="css/aluno.css">
+<!-- firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="js/firebase_conf.js"></script>
 <title>Página do Aluno</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.container {
-  margin-top: 100px;
-  display: flex;
-  width: 900px;
-  background: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.sidebar {
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 30%;
-  text-align: center;
-}
-
-.profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  border: 3px solid black;
-}
-
-.edit-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  margin: 10px 0;
-}
-
-.edit-button:hover {
-  background-color: #0056b3;
-}
-
-.description {
-  font-size: 14px;
-  color: #555;
-  margin: 20px 0;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.social-links p {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: 14px;
-    color: #007bff;
-}
-
-.social-links i {
-    margin-right: 8px;
-    font-size: 16px;
-    color: #007bff;
-}
-
-.social-links a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-.social-links a:hover {
-    text-decoration: underline;
-}
-
-.main-content {
-  width: 70%;
-  padding: 20px;
-}
-
-.tabs {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.tab {
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #555;
-  text-transform: capitalize;
-}
-
-.tab.active {
-  color: #309b69;
-  border-bottom: 2px solid #309b69;
-}
-
-.info h1 {
-  font-size: 30px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.info h2 {
-  font-size: 20px;
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-.info p {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-
-.interests {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.interests i {
-    font-size: 50px;
-    color: #ff5722;
-}
-
-.interests i:nth-child(2) {
-    color: #2965f1;
-}
-
-.interests i:nth-child(3) {
-    color: #f7df1e;
-}
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.nav_links {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav_links li {
-  margin: 0 15px;
-}
-
-.nav_links a {
-  text-decoration: none;
-  color: #333;
-}
-</style>
 </head>
 <body>
   <a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
 
     <nav class="navbar">
         <div class="nav_logo">
-            <img src="imagens/tema_claro.png" alt="Logo" class="logo-img">
+            <a href="index.html"> <img src="imagens/tema_claro.png" alt="Logo" class="logo-img"> </a>
         </div>
         <ul class="nav_links">
             <li><a href="index.html">Início</a></li>
-            <li><a href="tutorialteste.html">Tutoriais</a></li>
-            <li><a href="#">Exercícios</a></li>
+            <li><a href="tutorial.html">Tutoriais</a></li>
+            <li><a href="teste-ferramenta.html">Exercícios</a></li>
             <li><a href="forum.html">Fórum</a></li>
-            <li><a href="#">Sobre Nós</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="contato.html">Contato</a></li>
         </ul>
         <div class="hamburger-menu" onclick="toggleMenu()">
             <div class="bar"></div>
@@ -213,9 +41,9 @@ body {
 
     <div class="container">
         <aside class="sidebar">
-            <img class="profile-img" src="imagens/julio.png" alt="Peter Reys">
-            <h2>Peter Reys</h2>
-            <p class="id">FuturoDevPeter</p>
+            <img class="profile-img" src="imagens/entrar.png" alt="foto usuario">
+            <h2 id="usuario"> </h2>
+            <p class="id">FuturoDev</p>
             <button class="edit-button">Editar perfil</button>
             <p class="description">
                 Estudante de programação apaixonado por desenvolver soluções criativas.
@@ -224,17 +52,18 @@ body {
             <div class="social-links">
               <p>
                   <i class="fab fa-instagram"></i>
-                  <a href="https://instagram.com/peeter_reys" target="_blank">@peeter_reys</a>
+                  <a href="#" target="_blank" id="usuario"></a>
               </p>
               <p>
                   <i class="fab fa-linkedin"></i>
-                  <a href="https://linkedin.com/in/peter-reys" target="_blank">Peter Reys</a>
+                  <a href="#" target="_blank" id="usuario" ></a>
               </p>
               <p>
                   <i class="fas fa-envelope"></i>
-                  <a href="mailto:contatopeter@gmail.com">contatopeter@gmail.com</a>
+                  <a href="#" id="email_usuario"></a>
               </p>
-          </div>          
+          </div>  
+          <button class="delete-button" onclick="excluirConta()">Excluir Conta</button>        
         </aside>
 
         <main class="main-content">
@@ -244,7 +73,7 @@ body {
                 <span class="tab">progresso</span>
             </nav>
             <section class="info">
-                <h1>Olá! Eu sou o Peter🧑‍💻✨</h1>
+                <h1>Olá! Me chamo <p id="usuario"></p>🧑‍💻✨</h1>
                 <h2>Sobre Mim:</h2>
                   <p>Estudante apaixonado por programação, com foco em front-end🧑‍💻</p>
                   <p>Busco constantemente aprender novas tecnologias💡</p>
@@ -266,8 +95,128 @@ body {
         </main>
     </div>
 
+       <!-- confirmação de exclusão -->
+    <div id="confirmModal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <p>Tem certeza que deseja excluir sua conta? Essa ação é irreversível.</p>
+          <button onclick="confirmarExclusao()" class="delete-button">Sim, excluir</button>
+          <button onclick="fecharModal()" class="cancel-button">Cancelar</button>
+        </div>
+       </div>
+  
+          <!-- mensagens após exclusão -->
+      <div id="alertBox" class="hidden">
+         <div class="alertContent">
+          <p id="alertMessage"></p>
+          <button id="alertOkButton">OK</button>
+         </div>
+      </div>
+
+
     <script src="js/menu-drop.js"></script>
     <script>
+        // Preencher os dados do aluno que logou
+        firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+        const userName = user.displayName || 'Usuário DevLab'
+        const userEmail = user.email
+
+        // Exibir nome 
+        const usuarioElements = document.querySelectorAll('#usuario')
+        usuarioElements.forEach(element => {
+            element.innerText = userName
+        })
+
+        // Exibir email 
+        const emailElement = document.getElementById('email_usuario')
+        if (emailElement) {
+            emailElement.innerText = userEmail
+            emailElement.href = `mailto:${userEmail}`
+        }
+
+        // Foto perfil 
+        const profileImg = document.querySelector('.profile-img')
+        if (profileImg) {
+            const userPhotoURL = user.photoURL
+            if (userPhotoURL) {
+                profileImg.src = userPhotoURL
+            } else {
+                profileImg.src = 'imagens/entrar.png'
+            }
+        }
+
+        const dbRef = firebase.database().ref('users/' + user.uid)
+        dbRef.once('value', snapshot => {
+            const userData = snapshot.val()
+
+            if (userData) {
+                // Mostrar o nome, puxa do banco de dados
+                const dbUserName = userData.nome || 'Usuário DevLab'
+                const usuarioElements = document.querySelectorAll('#usuario')
+                usuarioElements.forEach(element => {
+                    element.innerText = dbUserName
+                })
+            }
+        })
+
+        // Puxar o nome de quem logou com github ou google
+        if (user.providerData && user.providerData.length > 0) {
+            const provider = user.providerData[0].providerId
+            console.log("Provedor:", provider)
+        }
+        }})
+
+        // confirmação de exclusão
+        const excluirConta = () => {
+        const confirmModal = document.getElementById("confirmModal")
+        confirmModal.style.display = "flex" }
+
+        const fecharModal = () => {
+        const confirmModal = document.getElementById("confirmModal")
+        confirmModal.style.display = "none"}
+
+        // confirmar a exclusão
+        const confirmarExclusao = () => {
+        console.log("Iniciando a exclusão da conta...")
+
+        const user = firebase.auth().currentUser
+
+        if (user) {
+        const userId = user.uid
+
+        firebase.database().ref('users/' + userId).remove()
+            .then(() => {
+                return user.delete();
+            })
+            .then(() => {
+                showAlert("Conta excluída com sucesso!")
+                fecharModal()
+            })
+            .catch((error) => {
+                if (error.code === 'auth/requires-recent-login') {
+                    showAlert("Por favor, faça login novamente para excluir sua conta.")
+                } else {
+                    showAlert("Erro ao excluir a conta. Tente novamente.")
+                }
+                fecharModal()
+            })
+        } else {
+           showAlert("Erro: Usuário não encontrado.")
+           fecharModal()}}
+
+        // sucesso ou erro
+        const showAlert = (message) => {
+        const alertBox = document.getElementById("alertBox")
+        const alertMessage = document.getElementById("alertMessage")
+        alertMessage.textContent = message
+        alertBox.style.display = "flex"}
+
+        document.getElementById("alertOkButton").addEventListener("click", () => {
+        document.getElementById("alertBox").style.display = "none"
+        window.location.href = "cadastro.html"
+        })
+
+        // menu
         document.addEventListener('DOMContentLoaded', function () {
             const hamburgerMenu = document.querySelector('.hamburger-menu');
             const navLinks = document.querySelector('.nav_links');
@@ -279,14 +228,13 @@ body {
 
             document.addEventListener('click', function (event) {
                 if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-                    navLinks.classList.remove('open');
+                    navLinks.classList.remove('open')
                 }
             });
         });
-
         function entrar() {
-            document.getElementById('linkIndex').click();
-        }
+        document.getElementById('linkIndex').click();
+      }
     </script>
 </body>
 </html>

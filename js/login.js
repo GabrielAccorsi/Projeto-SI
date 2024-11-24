@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // remover mensagens de erro padrão
 document.querySelector("form").noValidate = true
+
 // banco de dados - firebase
 const firebaseConfig = {
     apiKey: "AIzaSyD8MrXhpxNRCYVoXE0biVkBvq-QW5WQbng",
@@ -79,45 +80,50 @@ const firebaseConfig = {
   
     // login
     document.getElementById('loginForm').addEventListener('submit', (e) => {
-        e.preventDefault()
-        hideError()
-        
-        const email = document.getElementById('email').value
-        const senha = document.getElementById('senha').value
-        
+        e.preventDefault();
+        hideError();
+    
+        const email = document.getElementById('email').value;
+        const senha = document.getElementById('senha').value;
+    
         if (!email || !senha) {
-            showError('Por favor, preencha todos os campos corretamente!')
-            return
+            showError('Por favor, preencha todos os campos corretamente!');
+            return;
         }
-  
+    
         firebase.auth().signInWithEmailAndPassword(email, senha)
             .then((userCredential) => {
-                const user = userCredential.user
-
-                if (email.endsWith('@admin.com')) {
-                    window.location.href = "pagina_adm.html"
-                } else {
-                    window.location.href = "pagina_aluno.html"
-                }
+                const user = userCredential.user;
+    
+                // Recupera o tipo de usuário do banco de dados
+                database.ref('users/' + user.uid).once('value')
+                    .then((snapshot) => {
+                        const usuario = snapshot.val();
+                        if (usuario.tipo === 'adm') {
+                            window.location.href = "pagina_adm.html";
+                        } else {
+                            window.location.href = "pagina_aluno.html";
+                        }
+                    });
             })
             .catch((error) => {
-                const errorCode = error.code
-  
+                const errorCode = error.code;
+    
                 if (errorCode === 'auth/user-not-found') {
-                    showError('Este email não está cadastrado. Verifique ou cadastre-se.')
+                    showError('Este email não está cadastrado. Verifique ou cadastre-se.');
                 } else if (errorCode === 'auth/wrong-password') {
-                    showError('Senha incorreta. Tente novamente.')
+                    showError('Senha incorreta. Tente novamente.');
                 } else if (errorCode === 'auth/invalid-email') {
-                    showError('Email inválido. Verifique o formato do seu email.')
+                    showError('Email inválido. Verifique o formato do seu email.');
                 } else if (errorCode === 'auth/too-many-requests') {
-                    showError('Muitas tentativas de login. Tente novamente mais tarde.')
+                    showError('Muitas tentativas de login. Tente novamente mais tarde.');
                 } else if (error.message.includes('400')) {
-                    showError('Houve um erro ao autenticar. Verifique a senha ou o e-mail.')
+                    showError('Houve um erro ao autenticar. Verifique a senha ou o e-mail.');
                 } else {
-                    showError('Ocorreu um erro desconhecido. Tente novamente.')
+                    showError('Ocorreu um erro desconhecido. Tente novamente.');
                 }
-            })
-    })
+            });
+    });    
   })
   
   // validar email
