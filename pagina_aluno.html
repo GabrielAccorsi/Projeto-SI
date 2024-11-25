@@ -115,94 +115,94 @@
 
     <script src="js/menu-drop.js"></script>
     <script>
-        // Preencher os dados do aluno que logou
-        firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-        const userName = user.displayName || 'Usuário DevLab'
-        const userEmail = user.email
+        // Monitorar o estado de autenticação
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // Usuário autenticado, agora podemos acessar seus dados
+    const userRef = firebase.database().ref("users/" + user.uid);
 
-        // Exibir nome 
-        const usuarioElements = document.querySelectorAll('#usuario')
+    // Pegar os dados do usuário no banco de dados
+    userRef.once("value").then((snapshot) => {
+      const userData = snapshot.val();
+      
+      // Se os dados do usuário existirem
+      if (userData) {
+        const userName = userData.displayName || 'Usuário DevLab';
+        const userEmail = userData.email;
+
+        // Exibir nome
+        const usuarioElements = document.querySelectorAll('#usuario');
         usuarioElements.forEach(element => {
-            element.innerText = userName
-        })
+            element.innerText = userName;
+        });
 
-        // Exibir email 
-        const emailElement = document.getElementById('email_usuario')
+        // Exibir email
+        const emailElement = document.getElementById('email_usuario');
         if (emailElement) {
-            emailElement.innerText = userEmail
-            emailElement.href = `mailto:${userEmail}`
+            emailElement.innerText = userEmail;
+            emailElement.href = `mailto:${userEmail}`;
         }
 
-        // Foto perfil 
-        const profileImg = document.querySelector('.profile-img')
+        // Foto de perfil
+        const profileImg = document.querySelector('.profile-img');
         if (profileImg) {
-            const userPhotoURL = user.photoURL
+            const userPhotoURL = user.photoURL;
             if (userPhotoURL) {
-                profileImg.src = userPhotoURL
+                profileImg.src = userPhotoURL;
             } else {
-                profileImg.src = 'imagens/entrar.png'
+                profileImg.src = 'imagens/entrar.png';
             }
         }
+      }
+    }).catch((error) => {
+      console.error("Erro ao obter dados do usuário:", error);
+    });
 
-        const dbRef = firebase.database().ref('users/' + user.uid)
-        dbRef.once('value', snapshot => {
-            const userData = snapshot.val()
+  } else {
+    console.log("Nenhum usuário autenticado");
+  }
+});
 
-            if (userData) {
-                // Mostrar o nome, puxa do banco de dados
-                const dbUserName = userData.nome || 'Usuário DevLab'
-                const usuarioElements = document.querySelectorAll('#usuario')
-                usuarioElements.forEach(element => {
-                    element.innerText = dbUserName
-                })
-            }
-        })
+// Funções de exclusão
+const excluirConta = () => {
+  const confirmModal = document.getElementById("confirmModal");
+  confirmModal.style.display = "flex";
+};
 
-        // Puxar o nome de quem logou com github ou google
-        if (user.providerData && user.providerData.length > 0) {
-            const provider = user.providerData[0].providerId
-            console.log("Provedor:", provider)
-        }
-        }})
+const fecharModal = () => {
+  const confirmModal = document.getElementById("confirmModal");
+  confirmModal.style.display = "none";
+};
 
-        // confirmação de exclusão
-        const excluirConta = () => {
-        const confirmModal = document.getElementById("confirmModal")
-        confirmModal.style.display = "flex" }
+const confirmarExclusao = () => {
+  console.log("Iniciando a exclusão da conta...");
 
-        const fecharModal = () => {
-        const confirmModal = document.getElementById("confirmModal")
-        confirmModal.style.display = "none"}
-
-        // confirmar a exclusão
-        const confirmarExclusao = () => {
-        console.log("Iniciando a exclusão da conta...")
-
-        const user = firebase.auth().currentUser
-
-        if (user) {
-        const userId = user.uid
-
-        firebase.database().ref('users/' + userId).remove()
-            .then(() => {
-                return user.delete();
-            })
-            .then(() => {
-                showAlert("Conta excluída com sucesso!")
-                fecharModal()
-            })
-            .catch((error) => {
-                if (error.code === 'auth/requires-recent-login') {
-                    showAlert("Por favor, faça login novamente para excluir sua conta.")
-                } else {
-                    showAlert("Erro ao excluir a conta. Tente novamente.")
-                }
-                fecharModal()
-            })
+  const user = firebase.auth().currentUser;
+  if (user) {
+    const userId = user.uid;
+    
+    firebase.database().ref('users/' + userId).remove()
+      .then(() => {
+        return user.delete();
+      })
+      .then(() => {
+        showAlert("Conta excluída com sucesso!");
+        fecharModal();
+      })
+      .catch((error) => {
+        if (error.code === 'auth/requires-recent-login') {
+          showAlert("Por favor, faça login novamente para excluir sua conta.");
         } else {
-           showAlert("Erro: Usuário não encontrado.")
-           fecharModal()}}
+          showAlert("Erro ao excluir a conta. Tente novamente.");
+        }
+        fecharModal();
+      });
+  } else {
+    showAlert("Erro: Usuário não encontrado.");
+    fecharModal();
+  }
+};
+
 
         // sucesso ou erro
         const showAlert = (message) => {
