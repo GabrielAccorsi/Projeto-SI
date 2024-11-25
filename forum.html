@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/styles_body_forum.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="css/profile-dropdown-menu.css">
     <link rel="stylesheet" href="css/navbar.css">
     <script src="js/scriptlogin.js" defer></script>
@@ -16,6 +15,7 @@
     <script src="js/script_speak.js"></script>
     <script src="js/chamar_html.js"></script>
     <!-- firebase -->
+     
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
@@ -28,6 +28,7 @@
 
     <!--Inicio do corpo do fórum-->
   <main>
+    
     <div class="content">
         <div class="search-bar">
             <input type="text" id="search" placeholder="Pesquisar no fórum..." oninput="searchTopics()">
@@ -41,41 +42,7 @@
         </div>
 
         <div id="topics-container">
-            <div class="forum-topic" data-predefined="true" data-category="Geral" >
-                <div class="forum-topic-details"  >
-                    <img src="imagens/gabriel.png" alt="Avatar">
-                    <div>
-                        <h3 class="forum-topic-title"><a href="#">Programação Mobile</a></h3>
-                        <p>Gabriel Accorsi - 29/06/2022 09:07:15</p>
-                    </div>
-                </div>
-                <p>Geral</p>
-            </div>
-
-            <div class="forum-topic" data-predefined="true" data-category="Geral">
-                <div class="forum-topic-details">
-                    <img src="/imagens/gabriel.png" alt="Avatar">
-                    <div>
-                        <h3 class="forum-topic-title"><a href="#">Implementação de Bibliotécas</a></h3>
-                        <p>Gabriel Accorsi - 29/06/2022 19:08:25</p>
-                    </div>
-                </div>
-                <p>Geral</p>
-            </div>
-
-            <div class="forum-topic" data-predefined="true" data-category="Geral">
-
-              <div class="forum-topic-details">
-                  <img src="/imagens/gabriel.png" alt="Avatar">
-                  <div>
-                      <h3 class="forum-topic-title"><a href="#">Boas práticas de programação</a></h3>
-                      <p>Gabriel Accorsi - 30/06/2022 15:30:16</p>
-                  </div>
-              </div>
-              
-              <p>Geral</p>
-          </div>
-          
+        
 
         </div>
 
@@ -96,6 +63,7 @@
             <h2>Novo Tópico</h2>
             <input type="text" id="new-topic-title" placeholder="Título do tópico">
             <input type="text" id="new-topic-category" placeholder="Categoria">
+            <input type="text" id="new-topic-content" placeholder="Conteudo do Post">
             <button onclick="addNewTopic()">Adicionar Tópico</button>
         </div>
     </div>
@@ -103,23 +71,6 @@
     <script src="js/script_forum_novo.js"></script>
     <script src="js/script_speak.js"></script>
     <script src="js/menu-drop.js" defer></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    const excluirPost = document.querySelectorAll(".apagar");
     
-    if (usuario && usuario.tipo === "adm" ) {
-        excluirPost.forEach(botao => {
-            botao.style.display = "block";
-        });
-    } else {
-        excluirPost.forEach(botao => {
-            botao.style.display = "none"; 
-        });
-    }    
-});
-</script>
-
-
 </body>
 </html>
