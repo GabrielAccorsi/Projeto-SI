@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+html, body {
+  overflow-x: hidden; /* Evita o scroll horizontal */
+  margin: 0;          /* Remove margens padrão */
+  padding: 0;         /* Remove paddings padrão */
+  width: 100vw;       /* Limita a largura ao tamanho da viewport */
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #2f2841;
+  width: 10px;
+}
+ body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+
+#main{
+  padding: 9vw;
+}
+      #topic-details {
+        background-color: #ffffff;
+        padding: 20px;
+        border-bottom: 2px solid #eee;
+        margin-bottom: 20px;
+        margin-top: 100px;
+      }
+
+      #topic-title {
+        
+        font-size: 2em;
+        margin: 0;
+      }
+      #topic-content {
+        padding: 20px;
+        max-width: 600px; /* Limita a largura do texto */
+        word-wrap: break-word; /* Faz palavras muito grandes quebrarem de linha */
+        word-break: break-word; /* Garante que textos longos sem espaços também quebrem */
+        white-space: normal; /* Permite quebras de linha automáticas */
+      }
+      #topic-category,
+      #topic-views {
+        font-size: 1em;
+        color: #555;
+      }
+
+      /* Foto do autor */
+      #author-info {
+        display: flex; /* Flexbox para alinhar lado a lado */
+        align-items: center; /* Centraliza verticalmente */
+        gap: 10px; /* Espaçamento entre a imagem e o nome */
+      }
+      
+      #topic-author-photo {
+        width: 50px; /* Define largura da imagem */
+        height: 50px; /* Define altura da imagem */
+        border-radius: 50%; /* Deixa a imagem circular */
+      }
+      
+      #topic-author {
+        font-size: 16px; /* Ajuste o tamanho do texto, se necessário */
+        margin: 0; /* Remove margens extras */
+      }
+      
+
+     
+      #main-content {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      /* Estilo para os comentários */
+      #comments {
+        flex: 1;
+        margin-right: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #comments h3 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      #new-comment {
+        width: 98.5%;
+        height: 100px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        margin-bottom: 10px;
+      }
+
+      #add-comment {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        cursor: pointer;
+      }
+
+      #add-comment:hover {
+        background-color: #0056b3;
+      }
+
+     
+      #comments-container {
+        margin-top: 20px;
+      }
+
+      #comments-container div {
+        padding: 10px;
+        margin-bottom: 15px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+
+      #comments-container p {
+        margin: 0;
+        font-size: 1.1em;
+      }
+
+      #comments-container strong {
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      /* Estilo para a barra lateral de tópicos populares */
+      #popular-topics {
+        width: 300px;
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #popular-topics h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      #popular-topics ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      #popular-topics ul li {
+        margin-bottom: 10px;
+      }
+
+      #popular-topics ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.1em;
+      }
+
+      #popular-topics ul li a:hover {
+        color: #007bff;
+        font-weight: bold;
+      }
+      .comment-time {
+        font-size: 0.9em;
+        color: #777;
+      }
+
+      .like-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .like-button:hover {
+        background-color: #0056b3;
+      }
+      .comment {
+  position: relative; /* Define o comentário como um contêiner posicionado */
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.delete-button{
+  position: absolute; /* Posiciona o botão em relação ao contêiner */
+  top: 5px; /* Distância do topo do comentário ou resposta */
+  right: 5px; /* Distância do lado direito */
+  background-color: #ff4d4d; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Remove a borda padrão */
+  border-radius: 3px; /* Bordas arredondadas */
+  padding: 5px 10px;
+  cursor: pointer; /* Indica que o elemento é clicável */
+  font-size: 12px;
+}
+
+.delete-button:hover{
+  background-color: #ff0000; /* Cor ao passar o mouse */
+}
+
+.reply {
+  position: relative; /* Define o contêiner da resposta como referência para posicionamento absoluto */
+  padding: 10px; /* Espaçamento interno para layout */
+  margin: 10px 0; /* Espaçamento externo para separação das respostas */
+  border: 1px solid #ddd; /* Borda leve para separar visualmente */
+  border-radius: 5px; /* Bordas arredondadas */
+  background-color: #f9f9f9; /* Fundo claro para destaque */
+}
+
+.delete-reply-button {
+  position: absolute; /* Posiciona o botão em relação ao contêiner da resposta */
+  top: 5px; /* Distância do topo da resposta */
+  right: 5px; /* Distância do lado direito da resposta */
+  background-color: #ff4d4d; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Remove a borda padrão */
+  border-radius: 3px; /* Bordas arredondadas */
+  padding: 5px 10px;
+  cursor: pointer; /* Indica que o elemento é clicável */
+  font-size: 12px;
+}
+
+.delete-reply-button:hover {
+  background-color: #ff0000; /* Cor ao passar o mouse */
+}
+
+
+/* Modal container */
+#delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Sobrepõe outros elementos */
+}
+
+#delete-modal.hidden {
+  display: none; /* Esconde o modal */
+}
+
+/* Caixa do modal */
+.modal-box {
+  background-color: #fff; /* Cor de fundo */
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: fadeIn 0.3s ease; /* Animação de entrada */
+}
+
+/* Botões */
+.modal-actions button {
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#confirm-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+#confirm-delete:hover {
+  background-color: #c0392b;
+}
+
+#cancel-delete {
+  background-color: #bdc3c7;
+  color: black;
+}
+
+#cancel-delete:hover {
+  background-color: #95a5a6;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+      .comment .reply {
+        margin-left: 20px;
+      }
+      .reply-button {
+        color: #007bff;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .reply-field {
+        margin-top: 10px;
+        width: 100%;
+        display: none;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .reply-field.active {
+        display: block;
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .reply-field textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        #main-content {
+          flex-direction: column;
+          
+        }
+
+        #popular-topics {
+          width: 100%;
+          margin-top: 20px;
+        }
+
+        #comments {
+          margin-right: 0;
+          margin-top: 20px;
+        }
+
+        #add-comment {
+          width: 100%;
+        }
+      }

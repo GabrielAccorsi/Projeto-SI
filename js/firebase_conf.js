@@ -1,10 +1,11 @@
 // apenas inicialização pra usar nas paginas
+
 const firebaseConfig = {
     apiKey: "AIzaSyD8MrXhpxNRCYVoXE0biVkBvq-QW5WQbng",
     authDomain: "projeto-devlab.firebaseapp.com",
     databaseURL: "https://projeto-devlab-default-rtdb.firebaseio.com",
     projectId: "projeto-devlab",
-    storageBucket: "projeto-devlab.firebasestorage.app",
+    storageBucket: "projeto-devlab.appspot.com",
     messagingSenderId: "238801747466",
     appId: "1:238801747466:web:b3e99bec5bf628f2ac29f3",
     measurementId: "G-37HJJQGQ44"
@@ -12,6 +13,7 @@ const firebaseConfig = {
   
   firebase.initializeApp(firebaseConfig)
   const database = firebase.database()
+  
 
 
 

@@ -1,210 +1,257 @@
-// Função para abrir e fechar modal do novo tópico
 function openNewTopicModal() {
-    document.getElementById('new-topic-modal').style.display = 'flex';
+  document.getElementById("new-topic-modal").style.display = "flex";
 }
 
 function closeNewTopicModal() {
-    document.getElementById('new-topic-modal').style.display = 'none';
+  document.getElementById("new-topic-modal").style.display = "none";
 }
 
 // Função para carregar tópicos salvos e exibir na tela
 function carregarTopico() {
-    const topicContainer = document.getElementById('topics-container');
-    const topicosSalvos = JSON.parse(localStorage.getItem("topicos")) || [];
+  const topicContainer = document.getElementById("topics-container");
+  topicContainer.innerHTML = ""; // Limpa os tópicos exibidos
 
-    topicosSalvos.forEach((topico) => {
-        const newTopic = document.createElement('div');
-        newTopic.className = 'forum-topic';
-        newTopic.setAttribute('data-category', topico.category);
-        newTopic.setAttribute('data-usuario', topico.usuarioId || '');
+  const dbRef = firebase.database().ref("topics/");
+; // Referência ao nó 'topics' no Realtime Database
 
-        newTopic.innerHTML = `
+  dbRef
+    .once("value")
+    .then((snapshot) => {
+      const topicos = snapshot.val(); // Obtém os tópicos armazenados
+      console.log("Tópicos carregados:", topicos)
+      if (topicos) {
+        Object.keys(topicos).forEach((key) => {
+          const topico = topicos[key];
+          const newTopic = document.createElement("div");
+          newTopic.className = "forum-topic";
+          newTopic.setAttribute("data-category", topico.category);
+          newTopic.setAttribute("data-usuario", topico.usuarioId || "");
+          newTopic.setAttribute("data-id", key); // Adiciona o ID do tópico
+
+        
+          const fotoUrl = topico.foto;
+
+          newTopic.innerHTML = `
             <div class="forum-topic-details">
-                <img src="${topico.foto}" alt="Avatar">
+                <img src="${fotoUrl}" alt="Avatar">
                 <div>
-                    <h3 class="forum-topic-title"><a href="#">${topico.title}</a></h3>
-                    <p>${topico.nome} - ${topico.data}</p>
-                </div>
+                    <h3 class="forum-topic-title">
+                    <a href="viewTopic.html?id=${key}">${topico.title}</a>
+                    </h3>
+                <p>${topico.nome} - ${topico.data}</p>
+               </div>
             </div>
             <button class="apagar" style="display: none;">Excluir</button>
             <p>${topico.category}</p>
-        `;
-        topicContainer.appendChild(newTopic);
-    });
-
-    atualizarExibicaoBotoes(); 
-}
-
-function atualizarExibicaoBotoes() {
-    const user = firebase.auth().currentUser;
-
-    if (user) {
-        // dados do usuário no firebase
-        const userRef = firebase.database().ref('users/' + user.uid);
-
-        userRef.once('value').then((snapshot) => {
-            const usuario = snapshot.val();
-            const excluirPost = document.querySelectorAll(".apagar");
-            excluirPost.forEach((botao) => {
-                const forumTopic = botao.closest('.forum-topic');
-                const criadorPost = forumTopic.getAttribute("data-usuario");
-
-                // botão de exclusão 
-                if (usuario && (usuario.tipo === "adm" || usuario.id === criadorPost)) {
-                    botao.style.display = "block";
-                } else {
-                    botao.style.display = "none";
-                }
-            });
+            `;
+          topicContainer.appendChild(newTopic);
         });
-    }
+        atualizarExibicaoBotoes();
+        removerTopico();
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar os tópicos: ", error);
+    });
 }
 
+// Função para atualizar a exibição dos botões de exclusão
+function atualizarExibicaoBotoes() {
+  const user = firebase.auth().currentUser;
+
+  if (user) {
+    const userRef = firebase.database().ref("users/" + user.uid);
+
+    userRef
+      .once("value")
+      .then((snapshot) => {
+        const usuario = snapshot.val();
+        const excluirPost = document.querySelectorAll(".apagar");
+        excluirPost.forEach((botao) => {
+          const forumTopic = botao.closest(".forum-topic");
+          const criadorPost = forumTopic.getAttribute("data-usuario");
+
+          if (usuario && (usuario.tipo === "adm" || user.uid === criadorPost)) {
+            botao.style.display = "block";
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o usuário: ", error);
+      });
+  }
+}
 
 // Função para adicionar um novo tópico
 function addNewTopic() {
-    const title = document.getElementById('new-topic-title').value;
-    const category = document.getElementById('new-topic-category').value || 'Geral';
+  const title = document.getElementById("new-topic-title").value;
+  const category =
+    document.getElementById("new-topic-category").value || "Geral";
+    const conteudo = document.getElementById("new-topic-content").value
+  if (title.trim() === "") {
+    alert("O título do tópico não pode estar vazio!");
+    return;
+  }
 
-    if (title.trim() === '') {
-        alert('O título do tópico não pode estar vazio!');
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Nenhum usuário logado.");
+    return;
+  }
+
+  const dbRef1 = firebase.database().ref("users/" + user.uid);
+  dbRef1
+    .once("value")
+    .then((snapshot) => {
+      const userData = snapshot.val();
+      if (!userData || !userData.displayName) {
+        console.error("Nome do usuário não encontrado no banco de dados.");
+        alert("Erro ao carregar informações do usuário.");
         return;
-    }
-
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if (!usuario) {
-        alert('Nenhum usuário logado.');
+      }
+      if (!userData || !userData.photoURL) {
+        console.error("Nome do usuário não encontrado no banco de dados.");
+        alert("Erro ao carregar informações do usuário.");
         return;
-    }
+      }
+      const foto = userData.photoURL;
 
-    const novoTopico = {
+      const nome = userData.displayName;
+      const novoTopico = {
         title,
         category,
-        foto: usuario.foto,
-        nome: usuario.nome,
+        foto:
+          foto ||
+          "https://gabrielaccorsi.github.io/Projeto-SI/imagens/entrar.png",
+        nome,
         data: new Date().toLocaleString(),
-        usuarioId: usuario.id
-    };
+        conteudo,
+        usuarioId: user.uid,
+      };
 
-    const topicContainer = document.getElementById('topics-container');
-    const newTopic = document.createElement('div');
-    newTopic.className = 'forum-topic';
-    newTopic.setAttribute('data-category', category);
-    newTopic.setAttribute('data-usuario', usuario.id);
-
-    newTopic.innerHTML = `
-        <div class="forum-topic-details">
-            <img src="${novoTopico.foto}" alt="Avatar">
-            <div>
-                <h3 class="forum-topic-title"><a href="#">${novoTopico.title}</a></h3>
-                <p>${novoTopico.nome} - ${novoTopico.data}</p>
-            </div>
-        </div>
-        <button class="apagar" style="display: none;">Excluir</button>
-        <p>${novoTopico.category}</p>
-    `;
-    topicContainer.appendChild(newTopic);
-
-    const topicosSalvos = JSON.parse(localStorage.getItem("topicos")) || [];
-    topicosSalvos.push(novoTopico);
-    localStorage.setItem("topicos", JSON.stringify(topicosSalvos));
-
-    closeNewTopicModal();
-    atualizarExibicaoBotoes();
+      const dbRef = firebase.database().ref("topics");
+      dbRef
+        .push(novoTopico)
+        .then(() => {
+          carregarTopico();
+          closeNewTopicModal();
+        })
+        .catch((error) => {
+          console.error("Erro ao adicionar o tópico: ", error);
+        });
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar dados do usuário: ", error);
+    });
 }
 
-// Função para remover tópicos e atualizar localStorage
+// Função para remover tópicos e atualizar o banco de dados
 function removerTopico() {
-    const excluirPost = document.querySelectorAll(".apagar");
+  const excluirPost = document.querySelectorAll(".apagar");
 
-    excluirPost.forEach((botao) => {
-        botao.addEventListener('click', function() {
-            const forumTopic = this.closest('.forum-topic');
-            forumTopic.remove();
-            atualizarLocalStorage(); 
+  excluirPost.forEach((botao) => {
+    botao.addEventListener("click", function () {
+      const forumTopic = this.closest(".forum-topic");
+      const topicId = forumTopic.getAttribute("data-id"); // ID do tópico
+
+      // Remove o tópico do Firebase
+      firebase
+        .database()
+        .ref("topics/" + topicId)
+        .remove()
+        .then(() => {
+          forumTopic.remove(); // Remove o tópico da tela
+        })
+        .catch((error) => {
+          console.error("Erro ao excluir o tópico: ", error);
         });
     });
+  });
 }
-
-function atualizarLocalStorage() {
-    const topicosSalvos = [];
-    const topics = document.querySelectorAll('.forum-topic'); 
-
-    topics.forEach(topic => {
-        const isPredefined = topic.getAttribute('data-predefined') === 'true';
-
-        if (!isPredefined) {
-            const title = topic.querySelector('.forum-topic-title a').textContent;
-            const category = topic.getAttribute('data-category');
-            const nome = topic.querySelector('.forum-topic-details div p').textContent.split(' - ')[0];
-            const foto = topic.querySelector('.forum-topic-details img').src;
-            const data = topic.querySelector('.forum-topic-details div p').textContent.split(' - ')[1];
-
-            topicosSalvos.push({
-                title,
-                category,
-                foto,
-                nome,
-                data
-            });
-        }
-    });
-
-    
-    localStorage.setItem("topicos", JSON.stringify(topicosSalvos));
-    atualizarExibicaoBotoes()
-}
-
-
-function removerTopico() {
-    const excluirPost = document.querySelectorAll(".apagar");
-
-    excluirPost.forEach((botao) => {
-        botao.addEventListener('click', function() {
-            const forumTopic = this.closest('.forum-topic');
-            forumTopic.remove();
-            atualizarLocalStorage(); 
-        });
-    });
-
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    carregarTopico();
-    removerTopico();
-    atualizarExibicaoBotoes()
-});
-
-
 
 // Filtrar tópicos por categoria
 function filterTopics(category) {
-    const topics = document.querySelectorAll('.forum-topic');
-    topics.forEach(topic => {
-        if (category === 'all' || topic.getAttribute('data-category') === category) {
-            topic.style.display = 'flex';
-        } else {
-            topic.style.display = 'none';
-        }
-    });
+  const topics = document.querySelectorAll(".forum-topic");
+  topics.forEach((topic) => {
+    if (
+      category === "all" ||
+      topic.getAttribute("data-category") === category
+    ) {
+      topic.style.display = "flex";
+    } else {
+      topic.style.display = "none";
+    }
+  });
 
-    document.querySelectorAll('.categories button').forEach(button => {
-        button.classList.remove('active');
-    });
-    event.target.classList.add('active');
+  document.querySelectorAll(".categories button").forEach((button) => {
+    button.classList.remove("active");
+  });
+  event.target.classList.add("active");
 }
 
 // Pesquisar tópicos
 function searchTopics() {
-    const query = document.getElementById('search').value.toLowerCase();
-    const topics = document.querySelectorAll('.forum-topic');
-    topics.forEach(topic => {
-        const title = topic.querySelector('.forum-topic-title').textContent.toLowerCase();
-        topic.style.display = title.includes(query) ? 'flex' : 'none';
-    });
+  const query = document.getElementById("search").value.toLowerCase();
+  const topics = document.querySelectorAll(".forum-topic");
+  topics.forEach((topic) => {
+    const title = topic
+      .querySelector(".forum-topic-title")
+      .textContent.toLowerCase();
+    topic.style.display = title.includes(query) ? "flex" : "none";
+  });
 }
 
-
-
-
+document.addEventListener("DOMContentLoaded", () => {
+  carregarTopico();
+});
+function loadPopularTopics() {
+    const popularTopicsContainer = document.getElementById("popular-topics");
+  
+    database.ref("topics")
+      .orderByChild("views")
+      .limitToLast(5)
+      .once("value")
+      .then((snapshot) => {
+        popularTopicsContainer.innerHTML = "";
+        snapshot.forEach((childSnapshot) => {
+          const topic = childSnapshot.val();
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+            <a href="/forum/topic.html?id=${childSnapshot.key}">
+              ${topic.title} (${topic.views} visualizações)
+            </a>`;
+          popularTopicsContainer.appendChild(listItem);
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar tópicos populares:", error);
+      });
+  }
+  function loadPopularTopics() {
+    const popularTopicsContainer = document.getElementById("popular-topics-list");
+  
+    database
+      .ref("topics")  // Referência para os tópicos no Firebase
+      .orderByChild("views")  // Ordena por visualizações
+      .limitToLast(5)  // Limita a 5 tópicos mais populares
+      .once("value")  // Pega o valor uma vez
+      .then((snapshot) => {
+        // Limpa o conteúdo atual da lista
+        popularTopicsContainer.innerHTML = "";
+        // Para cada tópico retornado, cria um item de lista
+        snapshot.forEach((childSnapshot) => {
+          const topic = childSnapshot.val();  // Obtem os dados do tópico
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+            <a href="/viewTopic.html?id=${childSnapshot.key}">
+              ${topic.title} (${topic.views} visualizações)
+            </a>`;
+          popularTopicsContainer.appendChild(listItem);  // Adiciona o item na lista
+        });
+      })
+      .catch((error) => {
+        // Em caso de erro, exibe no console
+        console.error("Erro ao carregar tópicos populares:", error);
+      });
+  }
+  

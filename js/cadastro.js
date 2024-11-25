@@ -94,45 +94,46 @@ function closeAlert() {
 
 // cadastro
 document.getElementById('cadastroForm').addEventListener('submit', (event) => {
-    event.preventDefault()  
+    event.preventDefault();  
 
-    const nome = document.getElementById('nome').value.trim()
-    const email = document.getElementById('email').value.trim()
-    const senha = document.getElementById('senha').value.trim()
-    const senhaConfirm = document.getElementById('senhaConfirm').value.trim()
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const senha = document.getElementById('senha').value.trim();
+    const senhaConfirm = document.getElementById('senhaConfirm').value.trim();
 
-    const auth = firebase.auth()
+  
+    if (senha !== senhaConfirm) {
+        showAlert("As senhas não coincidem.");
+        return;
+    }
 
-    // usuário
+    const auth = firebase.auth();
+
     auth.createUserWithEmailAndPassword(email, senha)
-    .then((userCredential) => {
-        const user = userCredential.user;
+        .then((userCredential) => {
+            const user = userCredential.user;
+            const foto = "https://gabrielaccorsi.github.io/Projeto-SI/imagens/entrar.png"; 
 
-        // Adiciona o tipo de usuário ao banco de dados
-        const tipo = email.endsWith('@admin.com') ? 'adm' : 'aluno';
-
-        database.ref('users/' + user.uid).set({
-            nome: nome,
-            email: email,
-            tipo: tipo // Adiciona o tipo do usuário
-        }).then(() => {
-            if (tipo === 'adm') {
-                window.location.href = "pagina_adm.html";
+            firebase.database().ref('users/' + user.uid).set({
+                displayName: nome || user.displayName || 'Nome não definido',
+                email: email,
+                tipo: email.endsWith('@admin.com') ? 'adm' : 'aluno',
+                photoURL: foto
+            }).then(() => {
+                window.location.href = "personalizacao.html";  
+            });
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            if (errorCode === 'auth/email-already-in-use') {
+                showAlert("O e-mail inserido já está cadastrado.");
             } else {
-                window.location.href = "pagina_aluno.html";
+                showAlert("Erro ao cadastrar usuário: " + error.message);
             }
         });
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        if (errorCode === 'auth/email-already-in-use') {
-            showAlert("O e-mail inserido já está cadastrado. Tente usar outro e-mail ou faça login.");
-        } else {
-            showAlert("Por favor, preencha todos os campos corretamente.");
-        }
-    });
+});
 
-})
+
 
 // validar nome
 document.addEventListener("DOMContentLoaded", () => {
