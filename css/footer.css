@@ -71,9 +71,6 @@ footer {
 .Footer_nav_links {
     list-style: none;
     padding: 10px;
-    list-style-type: none;
-    margin: 10px;
-    margin-top: 20px;
     display: flex;
     justify-content: center;
 }

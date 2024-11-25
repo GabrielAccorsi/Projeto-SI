@@ -72,7 +72,7 @@ main {
 
 
 .nav_links li a:hover {
-    background-color: #77ffc0;
+    background-color: #2EF2CB;
     color: #201b2c;
     border-radius: 10px;
 }
@@ -114,7 +114,7 @@ main {
         width: 200px; 
     }
     .nav_links li a:hover {
-        background-color: #77ffc0;
+        background-color: #2EF2CB;
         color: #201b2c;
     }
     .nav_links.open {
