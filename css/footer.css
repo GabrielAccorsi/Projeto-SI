@@ -2,11 +2,19 @@
 .footer {
     background-color: #2f2841;
     padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    bottom: 10px;
     width: 100%;
+    display: flex;
+    justify-content: space-between; /* Espaço igual entre seções */
+    align-items: flex-start; /* Alinhamento superior */
+    flex-wrap: wrap; /* Permitir quebra de linha em telas pequenas */
+    gap: 20px; /* Espaçamento entre as seções */
     
+}
+
+/* Estilo para cada seção */
+.footer section {
+    flex: 1; /* Cada seção ocupa o mesmo espaço */
+    min-width: 200px; /* Largura mínima para evitar encolhimento excessivo */
 }
 
 /* Logo e links de navegação */
@@ -15,77 +23,65 @@
     font-size: 18px;
     margin-bottom: 10px;
     color: #ffffff;
-    justify-content: center;
     display: flex;
     align-items: center;
-    font-weight: 600;
-    
-
-}
-.footer p{
-    padding: 0;
-    font-size: 18px;
-
 }
 
 .Footer_nav_logo img {
-width: 40px;
-height: auto;
-margin-right: 10px;
-border-radius: 50%;
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 50%;
 }
-
 
 .Footer_nav_links {
+    font-size: 12px;
     list-style: none;
     padding: 0;
+<<<<<<< HEAD
     list-style-type: none;
+=======
+>>>>>>> 1979024c27b109c72fc648db060f68fdbfd1f628
     display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: center; 
+    flex-direction: column; /* Links em coluna */
+    margin-top: 10px;
 }
 
-
- .footer_nav_links li a{
-    display: inline-block;
-    margin-right: 15px;
+.Footer_nav_links li a {
+    margin-bottom: 10px;
     color: #fff;
-}
-.Footer_nav_links li {
-    display: inline-block;
-    margin-right: 15px;
-    color: #fff;
-}
-
-.Footer_nav_links a {
     text-decoration: none;
-    color: #fff;
+    transition: color 0.3s ease; /* Transição suave */
+}
+
+.Footer_nav_links li a:hover {
+    color: #007bff; /* Cor azul ao passar o mouse */
 }
 
 /* Ícones sociais */
-.social-links {
-    margin-top: 20px;
-}
 .social-links a {
     margin-right: 10px;
-    color: #2f2841;
-    font-size: 20px;
+    display: inline-block;
 }
-.fab img{
-    width: 30px;
-    justify-content: center;
 
+.social-links img {
+    width: 30px;
+    height: 30px;
 }
 
 /* Informações de contato */
 .contact-info {
-    margin-top: 20px;
+    font-size: 12px;
     color: #fff;
+    line-height: 1.8;
 }
 
 /* Rodapé inferior */
 .footer-bottom {
+    font-size: 12px;
+    text-align: center;
     margin-top: 20px;
+    width: 100%; /* Ocupa toda a largura */
     color: #fff;
 }
+

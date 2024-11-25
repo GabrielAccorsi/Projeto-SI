@@ -1,0 +1,26 @@
+/*Apagar daqui pra baixo se der ruim*/
+
+/* Garante que o body preencha toda a altura da tela */
+html, body {
+    height: 100%;
+    margin: 0; /* Remove margens padrão */
+    display: flex;
+    flex-direction: column; /* Permite organizar os filhos verticalmente */
+}
+
+/* Garante que o main ocupe o espaço restante */
+main {
+    flex: 1; /* Faz com que o main ocupe o espaço restante */
+}
+
+/* Rodapé */
+.footer {
+    background-color: #2f2841;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}

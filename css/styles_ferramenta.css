@@ -1,4 +1,4 @@
-body, html {
+body{
     margin: 0;
     padding: 0;
     height: 100%;
@@ -6,7 +6,7 @@ body, html {
     box-sizing: border-box;
 }
 
-.header, .footer {
+.header {
     background-color: #4CAF50;
     color: white;
     text-align: center;
@@ -17,10 +17,6 @@ body, html {
 
 .header {
     top: 0;
-}
-
-.footer {
-    bottom: 0;
 }
 
 main {
