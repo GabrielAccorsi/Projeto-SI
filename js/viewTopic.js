@@ -124,7 +124,7 @@ function carregarComentarios(topicId) {
           .querySelector(".delete-button")
           .addEventListener("click", () => {
             showModal(() => {
-              dbRef.child(commentId).remove(); // Remove o comentário
+              dbRef.child(commentId).remove(); 
             });
           });
         
@@ -284,9 +284,9 @@ document.getElementById("add-comment").addEventListener("click", () => {
       const newComment = {
         nome: nome,
         text: commentText,
-        data: new Date().toISOString(), // Salvando data em formato UTC
-        userId: user.uid, // Armazenando o UID do usuário que fez o comentário
-        likes: 0, // Inicializando o contador de likes
+        data: new Date().toISOString(), 
+        userId: user.uid,
+        likes: 0, 
       };
 
       dbRef.push(newComment);
