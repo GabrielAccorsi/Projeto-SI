@@ -1,205 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/logo_atual.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/profile-dropdown-menu.css">
-    <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/footer.css">
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-  <link rel="stylesheet" href="css/navbar.css">
-    <title>Página do Administrador</title>
-    <style>
-        body{
-          background: linear-gradient(120deg, rgb(29, 29, 66),rgb(41, 5, 32));
-          
-        }
-        main{
-        color: white;
-      }
-        h2{
-          padding: 10px;
-          margin: 10px;
-        }
-        p{
-          padding: 10px;
-        }
-        button{
-          border-radius: 15px;
-          padding: 5px;
-          margin: 10px;
-        }
-        .perfil {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 35px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .perfil img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 20px;
-
-        }
-
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-      <div class="nav_logo">
-        <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-      </div>
-      <ul class="nav_links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="tutorialteste.html">Tutoriais</a></li>
-        <li><a href="#">Exercícios</a></li>
-        <li><a href="forum.html">Fórum</a></li>
-        <li><a href="#">Sobre Nós</a></li>
-        <li><a href="#">Contato</a></li>
-      </ul>
-
-      <div class="profile-dropdown">
-        <div class="profile-dropdown-btn">
-          <div class="profile-img">
-          </div>
-          <span id="nome_entrar">
-          </span>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="css/adm.css">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="js/firebase_conf.js"></script>
+    <title>Página do ADM</title>
+  
+    </head>
+    <body>
+      <a id="linkIndex" href="tutorialteste.html" style="display: none;"></a>
+    
+        <nav class="navbar">
+            <div class="nav_logo">
+              <a href="index.html"> <img src="imagens/tema_claro.png" alt="Logo" class="logo-img"> </a>
+            </div>
+            <ul class="nav_links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tutorial.html">Tutoriais</a></li>
+                <li><a href="teste-ferramenta.html">Exercícios</a></li>
+                <li><a href="forum.html">Fórum</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="mensagens.html">Contato</a></li>
+            </ul>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    
+        <div class="container">
+            <aside class="sidebar">
+                <img class="profile-img" src="imagens/entrar.png" alt="foto usuario">
+                <h2 id="usuario"></h2>
+                <p class="id">Professor</p>
+                <button class="edit-button">Editar perfil</button>
+                <p class="description">
+                  Sou Professora de TI, Tenho uma graduação em Ciência da Computação, com especialização em Engenharia de Software. Durante minha carreira acadêmica,Se precisar de alguma ajuda específica em TI, posso simular essa função e orientá-lo com prazer!
+                </p>
+                <div class="social-links">
+                  <p>
+                      <i class="fab fa-instagram"></i>
+                      <a href="#" target="_blank" id="usuario"></a>
+                  </p>
+                  <p>
+                      <i class="fab fa-linkedin"></i>
+                      <a href="#" target="_blank" id="usuario"></a>
+                  </p>
+                  <p>
+                      <i class="fas fa-envelope"></i>
+                      <a href="#" id="email_usuario"></a>
+                  </p>
+              </div>   
+              <button class="delete-button" onclick="excluirConta()">Excluir Conta</button>       
+            </aside>
+    
+            <main class="main-content">
+                <nav class="tabs">
+                    <span class="tab active">visão geral</span>
+                    <span class="tab">Exercícios</span>
+                    <span class="tab">Notas/Faltas</span>
+                </nav>
+                <section class="info">
+                    <h1>Olá! Eu sou <p id="usuario"></p></h1>
+                    <h2>Sobre Mim:</h2>
+                      <p>possuo diversas certificações técnicas, incluindo certificações em redes de computadores,</p>
+                      <p>desenvolvimento de software e infraestrutura de TI também fiz uma pós-graduação em Inteligência Artificial e um curso de extensão em Segurança da Informação.💡</p>
+                      
+                    <h2>Linguagens Utilizadas:</h2>
+                <div class="interests">
+                    <i class="fa-brands fa-python python-icon"></i>
+                    <i class="fab fa-js-square" title="JavaScript"></i>
+                </div>
+                    <h2> Tecnologias Favoritas:</h2>
+                    <p>Jupyter Notebooks: Perfeito para testes e aprendizado interativo de código.</p>
+                    <p>VS Code: Uma IDE leve, personalizável e poderosa.</p>
+                    <p>PyCharm: Ideal para grandes projetos com funcionalidades avançadas para Python.</p>
+                    <p>React.js: Uma das bibliotecas mais populares para criar interfaces de usuário dinâmicas. Ótima para SPAs (Single Page Applications).</p>
+                    <p>jQuery: Embora esteja menos popular atualmente, ainda é útil para manipulações simples de DOM em projetos legados.</p>
+                </section>
+            </main>
         </div>
 
-        <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Perfil">
-              <i class="fa-regular fa-user"></i>
-              Perfil
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Posts">
-              <i class="fa-regular fa-comments"></i>
-              Posts
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-chart-line"></i>
-              Engajamento
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Configurações
-            </a>
-          </li>
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-circle-question"></i>
-              Ajuda e Suporte
-            </a>
-          </li>
-          <hr>
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="Deslogar">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Deslogar
-            </a>
-          </li>
-        </ul>
+        <!-- confirmação de exclusão -->
+    <div id="confirmModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>Tem certeza que deseja excluir sua conta? Essa ação é irreversível.</p>
+        <button onclick="confirmarExclusao()" class="delete-button">Sim, excluir</button>
+        <button onclick="fecharModal()" class="cancel-button">Cancelar</button>
       </div>
+     </div>
 
+        <!-- mensagens após exclusão -->
+    <div id="alertBox" class="hidden">
+       <div class="alertContent">
+        <p id="alertMessage"></p>
+        <button id="alertOkButton">OK</button>
+       </div>
+    </div>
+    
+        <script src="js/menu-drop.js"></script>
+        <script>
+        // preencher os dados do adm que logou
+       firebase.auth().onAuthStateChanged(user => { 
+       if (user) {
+        const userName = user.displayName || 'Usuário DevLab'
+        const userEmail = user.email
+
+        // exibir nome 
+        const usuarioElements = document.querySelectorAll('#usuario')
+        usuarioElements.forEach(element => {
+            element.innerText = userName
+        })
+
+        // exibir email
+        const emailElement = document.getElementById('email_usuario')
+        if (emailElement) {
+            emailElement.innerText = userEmail
+            emailElement.href = `mailto:${userEmail}`
+        }
+
+        // foto perfil 
+        const profileImg = document.querySelector('.profile-img')
+        if (profileImg) {
+            const userPhotoURL = user.photoURL || 'imagens/entrar.png'
+            profileImg.style.backgroundImage = `url('${userPhotoURL}')`
+        }
+
+        const dbRef = firebase.database().ref('users/' + user.uid)
+        dbRef.once('value', snapshot => {
+            const userData = snapshot.val()
+            if (userData) {
+                // nome do usuário, puxa do banco de dados
+                const dbUserName = userData.nome || 'Usuário DevLab'
+                const usuarioElements = document.querySelectorAll('#usuario')
+                usuarioElements.forEach(element => {
+                    element.innerText = dbUserName
+                })
+            }
+          })
+        }})
       
-      <div class="hamburger-menu" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </nav>
-    <main>
-    <div class="perfil">
-        <img id="fotoPerfil" src="" alt="Foto de Perfil">
-        <span id="nomeUsuario"></span>
-    </div>
+              // confirmação de exclusão
+              const excluirConta = () => {
+        const confirmModal = document.getElementById("confirmModal")
+        confirmModal.style.display = "flex" }
 
-    <h2>Bem-vindo à Página do Administrador!</h2>
-    <p>Conteúdo exclusivo para administradores.</p>
+        const fecharModal = () => {
+        const confirmModal = document.getElementById("confirmModal")
+        confirmModal.style.display = "none"}
 
-    <button onclick="listarUsuarios()">Listar usuários</button>
-    <button onclick="cadastrar()">Cadastrar</button><br>
-    <div id="listausr">
-        
-    </div>
+        // confirmar a exclusão
+        const confirmarExclusao = () => {
+        console.log("Iniciando a exclusão da conta...")
 
-  </main>
-    <script src="js/scriptlogin.js"></script>
-    <script src="js/menu-drop.js"></script>
-    <script>
-        // Carrega as informações do usuário do localStorage
-        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        const user = firebase.auth().currentUser
 
-        if (usuarioLogado) {
-            document.getElementById('fotoPerfil').src = usuarioLogado.foto;
-            document.getElementById('nomeUsuario').textContent = usuarioLogado.nome;
+        if (user) {
+        const userId = user.uid
+
+        firebase.database().ref('users/' + userId).remove()
+            .then(() => {
+                return user.delete();
+            })
+            .then(() => {
+                showAlert("Conta excluída com sucesso!")
+                fecharModal()
+            })
+            .catch((error) => {
+                if (error.code === 'auth/requires-recent-login') {
+                    showAlert("Por favor, faça login novamente para excluir sua conta.")
+                } else {
+                    showAlert("Erro ao excluir a conta. Tente novamente.")
+                }
+                fecharModal()
+            })
         } else {
-            alert('Nenhum usuário logado!');
-        }
+           showAlert("Erro: Usuário não encontrado.")
+           fecharModal()}}
 
-      
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const navLinks = document.querySelector('.nav_links');
+        // sucesso ou erro
+        const showAlert = (message) => {
+        const alertBox = document.getElementById("alertBox")
+        const alertMessage = document.getElementById("alertMessage")
+        alertMessage.textContent = message
+        alertBox.style.display = "flex"}
 
-      hamburgerMenu.addEventListener('click', function (event) {
-        event.stopPropagation();
-        navLinks.classList.toggle('open');
+        document.getElementById("alertOkButton").addEventListener("click", () => {
+        document.getElementById("alertBox").style.display = "none"
+        window.location.href = "cadastro.html"
+        })
+
+       // menu
+       document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav_links');
+  
+        hamburgerMenu.addEventListener('click', function (event) {
+          event.stopPropagation();
+          navLinks.classList.toggle('open');
+        });
+  
+        document.addEventListener('click', function (event) {
+          if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+            navLinks.classList.remove('open');
+          }
+        });
       });
-
-      document.addEventListener('click', function (event) {
-        if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-          navLinks.classList.remove('open');
-        }
-      });
-    });
-    function entrar() {
-      document.getElementById('linkIndex').click();
-    }
-
-    </script>
-
-<footer class="footer" style="position: absolute;">
-  <div class="footer-navbar">
-    <div class="Footer_nav_logo">
-      <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-    </div>
-    <ul class="Footer_nav_links">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="tutorialteste.html">Tutoriais</a></li>
-      <li><a href="#">Exercícios</a></li>
-      <li><a href="forum.html">Fórum</a></li>
-      <li><a href="#">Sobre Nós</a></li>
-      <li><a href="#">Contato</a></li>
-    </ul>
-  </div>
-  <div class="footer-info">
-    <div class="social-links">
-      <a href="https://www.facebook.com/"><i class="fab fa-facebook"><img src="imagens/facebook.png" alt="Imagem do link para facebook"></i></a>
-      
-      <a href="https://www.instagram.com/"><i class="fab fa-instagram"><img src="imagens/instagram.png" alt="Imagem do link para Instagram"></i></a>
-    </div>
-    <div class="contact-info">
-      <p>Telefone: (24) 9999-88888</p>
-      <p>Email: contato@ensinarprogramacao.com</p>
-      <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
-  </div>
-</footer>
-</body>
-</html>
-
+      function entrar() {
+        document.getElementById('linkIndex').click();
+      }
+      </script>
+    </body>
+    </html>

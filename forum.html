@@ -8,14 +8,18 @@
     <link rel="stylesheet" href="css/styles_body_forum.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="css/profile-dropdown-menu.css">
     <link rel="stylesheet" href="css/navbar.css">
     <script src="js/scriptlogin.js" defer></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=leMFOrsd"></script>
     <script src="js/script_speak.js"></script>
+    <script src="js/chamar_html.js"></script>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="js/firebase_conf.js"></script>
 </head>
 <body>
     
@@ -23,7 +27,7 @@
   <nav class="navbar" id="navbar"></nav>
 
     <!--Inicio do corpo do fórum-->
-
+  <main>
     <div class="content">
         <div class="search-bar">
             <input type="text" id="search" placeholder="Pesquisar no fórum..." oninput="searchTopics()">
@@ -76,47 +80,12 @@
         </div>
 
     </div>
-
-    <!--Fim do forum-->
+</main>
 
     <!--Inicio rodapé-->
 
-    <footer class="footer">
-        <section class="contact-info">
-            <p>Telefone: (24) 9999-88888</p>
-            <p>Email: contato@ensinarprogramacao.com</p>
-            <p>Endereço: Rua A, 123 - Volta Redonda, RJ - Brasil</p>
-        </section>
+    <footer class="footer" id="footer"> </footer>
     
-        <section class="footer-navbar">
-            <div class="Footer_nav_logo">
-                <img src="imagens/logo.png" alt="Logo" class="logo-img">Aprenda Programação
-            </div>
-            <ul class="Footer_nav_links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="tutorialteste.html">Tutoriais</a></li>
-                <li><a href="teste-ferramenta.html">Exercícios</a></li>
-                <li><a href="forum.html">Fórum</a></li>
-                <li><a href="sobre.html">Sobre Nós</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </section>
-    
-        <section class="footer-info">
-            <div class="social-links">
-                <a href="https://www.facebook.com/">
-                    <img src="imagens/facebook.png" alt="Facebook">
-                </a>
-                <a href="https://www.instagram.com/">
-                    <img src="imagens/instagram.png" alt="Instagram">
-                </a>
-            </div>
-        </section>
-    
-        <div class="footer-bottom">
-            <p>&copy; 2024 Aprenda Programação. Todos os direitos reservados.</p>
-        </div>
-    </footer>
     <!--Fim do rodapé-->
     
 

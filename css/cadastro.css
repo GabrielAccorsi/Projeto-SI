@@ -30,7 +30,7 @@ form {
 }
 
 .navbar {
-    position: relative;
+    position: relative !important;
     z-index: 1000; 
 }
 

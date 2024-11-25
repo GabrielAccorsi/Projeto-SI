@@ -32,26 +32,34 @@ function carregarTopico() {
         topicContainer.appendChild(newTopic);
     });
 
-    atualizarExibicaoBotoes(); // Atualiza a exibição dos botões de acordo com o estado do usuário
+    atualizarExibicaoBotoes(); 
 }
 
-// Função para atualizar a exibição dos botões de exclusão
 function atualizarExibicaoBotoes() {
-    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
-    const excluirPost = document.querySelectorAll(".apagar");
+    const user = firebase.auth().currentUser;
 
-    excluirPost.forEach((botao) => {
-        const forumTopic = botao.closest('.forum-topic');
-        const criadorPost = forumTopic.getAttribute("data-usuario");
+    if (user) {
+        // dados do usuário no firebase
+        const userRef = firebase.database().ref('users/' + user.uid);
 
-        // Exibe o botão de exclusão se o usuário for admin ou o criador do post
-        if (usuario && (usuario.tipo === "adm" || usuario.id === criadorPost)) {
-            botao.style.display = "block";
-        } else {
-            botao.style.display = "none";
-        }
-    });
+        userRef.once('value').then((snapshot) => {
+            const usuario = snapshot.val();
+            const excluirPost = document.querySelectorAll(".apagar");
+            excluirPost.forEach((botao) => {
+                const forumTopic = botao.closest('.forum-topic');
+                const criadorPost = forumTopic.getAttribute("data-usuario");
+
+                // botão de exclusão 
+                if (usuario && (usuario.tipo === "adm" || usuario.id === criadorPost)) {
+                    botao.style.display = "block";
+                } else {
+                    botao.style.display = "none";
+                }
+            });
+        });
+    }
 }
+
 
 // Função para adicionar um novo tópico
 function addNewTopic() {
