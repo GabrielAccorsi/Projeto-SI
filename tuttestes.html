@@ -8,6 +8,7 @@
     <script src="js/menu-drop.js"></script>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/profile-dropdown-menu.css">
+    <link rel="shortcut icon" href="imagens/logo.ico" type="image/x-icon">
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -92,13 +93,33 @@
     </section>
 
     <section class="cursos">
-        <div class="cards"><img src="imagens/noto-v1--thinking-face.png" alt=""><p>LÓGICA DE PROGRAMAÇÃO</p></div>
+        <div class="cards"><img src="imagens/noto-v1--thinking-face.png" alt=""id="logica"><p>LÓGICA DE PROGRAMAÇÃO</p></div>
         <div class="cards"><img src="imagens/devicon--html5.png" alt=""><p>HTML</p></div>
         <div class="cards"><img src="imagens/devicon--css3.png" alt=""><p>CSS</p></div>
         <div class="cards"><img src="imagens/devicon--javascript.png" alt=""><p>JAVASCRIPT</p></div>
         <div class="cards"><img src="imagens/devicon--python.png" alt=""><p>PYTHON</p></div>
     </section>
     <footer id="footer" class="footer"></footer>
+    <style>
+        
+        .fab-fa-facebook img, .fab-fa-instagram img {
+            width: 30px;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .fab-fa-facebook img:hover, .fab-fa-instagram img:hover {
+            width: 40px;
+        }
+    </style>
+</footer>
+
+    </style>
+    <script>
+        document.getElementById("logica").addEventListener("click", ()=> {
+            window.location.href="tutorial.html"
+        })
+    </script>
 </body>
 
 </html>
