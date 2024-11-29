@@ -108,8 +108,8 @@ body {
 #add-comment {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: #2f2841;
+  color: #2ec47e;
   border: none;
   border-radius: 5px;
   font-size: 1.1em;
@@ -117,7 +117,7 @@ body {
 }
 
 #add-comment:hover {
-  background-color: #0056b3;
+  background-color: #191623;
 }
 
 #comments-container {
@@ -149,7 +149,7 @@ body {
 }
 
 .like-button {
-  background-color: #007bff;
+  background-color: #2f2841;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -157,7 +157,7 @@ body {
 }
 
 .like-button:hover {
-  background-color: #0056b3;
+  background-color: #1d1828;
 }
 
 .comment {
@@ -200,7 +200,7 @@ body {
 
 .reply-button,
 .send-reply-button {
-  color: #007bff;
+  color:#2f2841;
   background: none;
   border: none;
   cursor: pointer;
