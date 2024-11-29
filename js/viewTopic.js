@@ -90,7 +90,7 @@ function carregarComentarios(topicId) {
         Object.keys(comments).forEach((commentId) => {
           const comment = comments[commentId];
           const isOwner = currentUser && comment.userId === currentUser.uid;
-          const isAdmin = currentUser && currentUser.admin; // Supondo que o campo "admin" exista no perfil do usuário.
+          const isAdmin = currentUser && currentUser.adm; // Supondo que o campo "admin" exista no perfil do usuário.
           const commentElement = document.createElement("div");
           commentElement.className = "comment";
           const commentTime = new Date(comment.data).toLocaleString();
