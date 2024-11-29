@@ -73,7 +73,7 @@
                 <span class="tab">progresso</span>
             </nav>
             <section class="info">
-                <h1>Olá! Me chamo <p id="usuario"></p>🧑‍💻✨</h1>
+                <h1>Olá! Me chamo <div id="usuario">🧑‍💻✨</div>🧑‍💻✨</h1>
                 <h2>Sobre Mim:</h2>
                   <p>Estudante apaixonado por programação, com foco em front-end🧑‍💻</p>
                   <p>Busco constantemente aprender novas tecnologias💡</p>
@@ -118,22 +118,34 @@
         // Monitorar o estado de autenticação
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // Usuário autenticado, agora podemos acessar seus dados
-    const userRef = firebase.database().ref("users/" + user.uid);
+    if (!user) {
+    console.log("Nenhum usuário autenticado.");
+    return;
+  }
 
+    // Usuário autenticado, agora podemos acessar seus dados
+
+    const userRef = firebase.database().ref("users/" + user.uid);
+   
     // Pegar os dados do usuário no banco de dados
     userRef.once("value").then((snapshot) => {
       const userData = snapshot.val();
-      
+
       // Se os dados do usuário existirem
       if (userData) {
-        const userName = userData.displayName || 'Usuário DevLab';
+        const userName = userData.displayName || nome ||'Usuário DevLab';
         const userEmail = userData.email;
+        const bio = userData.bio
+        console.log(bio)
+        document.querySelector(".edit-button").addEventListener("click", ()=>{
+          window.location.href = "personalizacao.html";
+        })
+        
 
         // Exibir nome
         const usuarioElements = document.querySelectorAll('#usuario');
         usuarioElements.forEach(element => {
-            element.innerText = userName;
+            element.innerText = `${userName}`;
         });
 
         // Exibir email
@@ -143,10 +155,16 @@ firebase.auth().onAuthStateChanged((user) => {
             emailElement.href = `mailto:${userEmail}`;
         }
 
+        // exibir bio 
+        const bioElement = document.querySelector('.description')
+        if(bioElement){
+          bioElement.innerHTML = bio;
+        }
+
         // Foto de perfil
         const profileImg = document.querySelector('.profile-img');
         if (profileImg) {
-            const userPhotoURL = user.photoURL;
+            const userPhotoURL = user.photoURL || userData.photoURL;
             if (userPhotoURL) {
                 profileImg.src = userPhotoURL;
             } else {

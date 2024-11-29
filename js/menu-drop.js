@@ -26,7 +26,7 @@ function carregarNavbar() {
               const formattedUserName =
                 userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase();
           
-              const maxLength = 6; // Limite de caracteres
+              const maxLength = 8; // Limite de caracteres
               let truncatedUserName =
                 formattedUserName.length > maxLength
                   ? formattedUserName.slice(0, maxLength) 
