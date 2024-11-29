@@ -62,8 +62,10 @@ function displayTopicDetails(topicId) {
       document.getElementById("topic-author").textContent = `${
         topic.nome || "Autor desconhecido"
       }`;
-// Exibir nome do autor
-     document.getElementById("topic-content").textContent = `${topic.conteudo}`;
+      // Exibir nome do autor
+      document.getElementById(
+        "topic-content"
+      ).textContent = `${topic.conteudo}`;
       // Exibir foto do autor
       document.getElementById("topic-author-photo").src = topic.foto;
       // Exibir visualizações
@@ -80,150 +82,144 @@ function carregarComentarios(topicId) {
   const dbRef = firebase.database().ref("topics/" + topicId + "/comments");
   const commentsContainer = document.getElementById("comments-container");
 
-  dbRef.on("value", (snapshot) => {
-    commentsContainer.innerHTML = "";
-    const comments = snapshot.val();
-    if (comments) {
-      Object.keys(comments).forEach((commentId) => {
-        const comment = comments[commentId];
-        const commentElement = document.createElement("div");
-        commentElement.className = "comment";
-        const commentTime = new Date(comment.data).toLocaleString();
+  firebase.auth().onAuthStateChanged((currentUser) => {
+    dbRef.on("value", (snapshot) => {
+      commentsContainer.innerHTML = "";
+      const comments = snapshot.val();
+      if (comments) {
+        Object.keys(comments).forEach((commentId) => {
+          const comment = comments[commentId];
+          const isOwner = currentUser && comment.userId === currentUser.uid;
+          const isAdmin = currentUser && currentUser.admin; // Supondo que o campo "admin" exista no perfil do usuário.
+          const commentElement = document.createElement("div");
+          commentElement.className = "comment";
+          const commentTime = new Date(comment.data).toLocaleString();
 
-        commentElement.innerHTML = `
-            <p><strong>${comment.nome}</strong> <span class="comment-time">(${commentTime})</span></p>
-            <p>${comment.text}</p>
-            <button class="reply-button" data-id="${commentId}">Responder</button>
-            <button class="delete-button" data-id="${commentId}">Excluir</button>
-            
-          `;
-
-     
-        const modal = document.getElementById("delete-modal");
-        const confirmButton = document.getElementById("confirm-delete");
-        const cancelButton = document.getElementById("cancel-delete");
-
-        // Mostrar o modal
-        function showModal(onConfirm) {
-          modal.classList.remove("hidden");
-
-          // Confirmar exclusão
-          confirmButton.onclick = () => {
-            onConfirm(); // Executa a ação passada
-            modal.classList.add("hidden");
-          };
-
-          // Cancelar exclusão
-          cancelButton.onclick = () => {
-            modal.classList.add("hidden");
-          };
-        }
-
-        // Adicionar evento ao botão de excluir
-        commentElement
-          .querySelector(".delete-button")
-          .addEventListener("click", () => {
-            showModal(() => {
-              dbRef.child(commentId).remove(); 
-            });
-          });
-        
-        // Campo de resposta
-        const replyField = document.createElement("div");
-        replyField.className = "reply-field";
-        replyField.innerHTML = `
-            <textarea placeholder="Digite sua resposta aqui..."></textarea>
-            <button class="send-reply-button">Enviar</button>
-          `;
-
-        // Enviar resposta
-        replyField
-          .querySelector(".send-reply-button")
-          .addEventListener("click", () => {
-            const replyText = replyField.querySelector("textarea").value;
-            if (replyText) {
-              const reply = {
-                nome: firebase.auth().currentUser.displayName || "Anônimo",
-                text: replyText,
-                data: new Date().toISOString(),
-                userId: firebase.auth().currentUser.uid,
-                likes: 0,
-              };
-              const replyRef = dbRef.child(`${commentId}/replies`);
-              replyRef.push(reply);
-              replyField.querySelector("textarea").value = ""; // Limpar o campo
-            }
-          });
-
-        // Mostrar ou esconder o campo de resposta
-        commentElement
-          .querySelector(".reply-button")
-          .addEventListener("click", () => {
-            if (!replyField.classList.contains("active")) {
-              replyField.classList.add("active");
-              replyField.querySelector("textarea").focus();
-            } else {
-              replyField.classList.remove("active");
-            }
-          });
-
-        
-        commentElement.appendChild(replyField);
-
-        
-        const repliesContainer = document.createElement("div");
-        repliesContainer.className = "replies-container";
-
-        const repliesRef = dbRef.child(`${commentId}/replies`);
-        repliesRef.on("value", (replySnapshot) => {
-          repliesContainer.innerHTML = "";
-          const replies = replySnapshot.val();
-          if (replies) {
-            Object.keys(replies).forEach((replyId) => {
-              const reply = replies[replyId];
-              const replyElement = document.createElement("div");
-              replyElement.className = "reply";
-              const replyTime = new Date(reply.data).toLocaleString();
-
-              replyElement.innerHTML = `
-                  <p><strong>${reply.nome}</strong> <span class="reply-time">(${replyTime})</span></p>
-                  <p>${reply.text}</p>
-                  <button class="delete-reply-button" data-id="${replyId}">Excluir</button>
-                `;
-
-              function showReplyModal(onConfirm) {
-                modal.classList.remove("hidden");
-
-                
-                confirmButton.onclick = () => {
-                  onConfirm(); 
-                  modal.classList.add("hidden");
-                };
-
-               
-                cancelButton.onclick = () => {
-                  modal.classList.add("hidden");
-                };
+          commentElement.innerHTML = `
+              <p><strong>${
+                comment.nome
+              }</strong> <span class="comment-time">(${commentTime})</span></p>
+              <p>${comment.text}</p>
+              ${
+                isOwner || isAdmin
+                  ? `<button class="delete-button" data-id="${commentId}">Excluir</button>`
+                  : ""
               }
+              <button class="reply-button" data-id="${commentId}">Responder</button>
+            `;
 
-              
-              replyElement
-                .querySelector(".delete-reply-button")
-                .addEventListener("click", () => {
-                  showReplyModal(() => {
-                    repliesRef.child(replyId).remove(); 
+          // Adicionar evento de exclusão
+          if (isOwner || isAdmin) {
+            const deleteButton = commentElement.querySelector(".delete-button");
+            deleteButton.addEventListener("click", () => {
+              const modal = document.getElementById("delete-modal");
+              const confirmButton = document.getElementById("confirm-delete");
+              const cancelButton = document.getElementById("cancel-delete");
+
+              modal.classList.remove("hidden");
+
+              confirmButton.onclick = () => {
+                dbRef
+                  .child(commentId)
+                  .remove()
+                  .then(() => {
+                    modal.classList.add("hidden");
                   });
-                });
+              };
 
-              repliesContainer.appendChild(replyElement);
+              cancelButton.onclick = () => {
+                modal.classList.add("hidden");
+              };
             });
           }
-        });
 
-        commentElement.appendChild(repliesContainer);
-        commentsContainer.appendChild(commentElement);
-      });
-    }
+          // Campo de resposta
+          const replyField = document.createElement("div");
+          replyField.className = "reply-field";
+          replyField.innerHTML = `
+              <textarea placeholder="Digite sua resposta aqui..."></textarea>
+              <button class="send-reply-button">Enviar</button>
+            `;
+
+          replyField
+            .querySelector(".send-reply-button")
+            .addEventListener("click", () => {
+              const replyText = replyField.querySelector("textarea").value;
+
+              if (replyText) {
+                const user = firebase.auth().currentUser;
+                const dbRef1 = firebase.database().ref("users/" + user.uid);
+                dbRef1.once("value").then((snapshot) => {
+                  const userData = snapshot.val();
+                  const reply = {
+                    nome: userData.displayName || "Anônimo",
+                    text: replyText,
+                    data: new Date().toISOString(),
+                    userId: currentUser.uid,
+                    likes: 0,
+                  };
+                
+                dbRef.child(`${commentId}/replies`).push(reply);
+                replyField.querySelector("textarea").value = "";
+              });
+              }
+            });
+
+          commentElement
+            .querySelector(".reply-button")
+            .addEventListener("click", () => {
+              replyField.classList.toggle("active");
+            });
+
+          commentElement.appendChild(replyField);
+
+          // Carregar respostas
+          const repliesContainer = document.createElement("div");
+          repliesContainer.className = "replies-container";
+          const repliesRef = dbRef.child(`${commentId}/replies`);
+          repliesRef.on("value", (replySnapshot) => {
+            repliesContainer.innerHTML = "";
+            const replies = replySnapshot.val();
+            if (replies) {
+              Object.keys(replies).forEach((replyId) => {
+                const reply = replies[replyId];
+                const isReplyOwner =
+                  currentUser && reply.userId === currentUser.uid;
+
+                const replyElement = document.createElement("div");
+                replyElement.className = "reply";
+                const replyTime = new Date(reply.data).toLocaleString();
+
+                replyElement.innerHTML = `
+                    <p><strong>${
+                      reply.nome
+                    }</strong> <span class="reply-time">(${replyTime})</span></p>
+                    <p>${reply.text}</p>
+                    ${
+                      isReplyOwner || isAdmin
+                        ? `<button class="delete-reply-button" data-id="${replyId}">Excluir</button>`
+                        : ""
+                    }
+                  `;
+
+                if (isReplyOwner || isAdmin) {
+                  replyElement
+                    .querySelector(".delete-reply-button")
+                    .addEventListener("click", () => {
+                      repliesRef.child(replyId).remove();
+                    });
+                }
+
+                repliesContainer.appendChild(replyElement);
+              });
+            }
+          });
+
+          commentElement.appendChild(repliesContainer);
+          commentsContainer.appendChild(commentElement);
+        });
+      }
+    });
   });
 }
 
@@ -284,9 +280,9 @@ document.getElementById("add-comment").addEventListener("click", () => {
       const newComment = {
         nome: nome,
         text: commentText,
-        data: new Date().toISOString(), 
+        data: new Date().toISOString(),
         userId: user.uid,
-        likes: 0, 
+        likes: 0,
       };
 
       dbRef.push(newComment);
