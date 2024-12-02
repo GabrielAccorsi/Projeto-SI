@@ -78,27 +78,38 @@ function displayTopicDetails(topicId) {
     });
 }
 
+
+
+
 function carregarComentarios(topicId) {
   const dbRef = firebase.database().ref("topics/" + topicId + "/comments");
   const commentsContainer = document.getElementById("comments-container");
 
   firebase.auth().onAuthStateChanged((currentUser) => {
-    dbRef.on("value", (snapshot) => {
-      commentsContainer.innerHTML = "";
-      const comments = snapshot.val();
-      if (comments) {
-        Object.keys(comments).forEach((commentId) => {
-          const comment = comments[commentId];
-          const isOwner = currentUser && comment.userId === currentUser.uid;
-          const isAdmin = currentUser && currentUser.adm; // Supondo que o campo "admin" exista no perfil do usuário.
-          const commentElement = document.createElement("div");
-          commentElement.className = "comment";
-          const commentTime = new Date(comment.data).toLocaleString();
+    if (!currentUser) {
+      console.error("Usuário não autenticado.");
+      return;
+    }
 
-          commentElement.innerHTML = `
-              <p><strong>${
-                comment.nome
-              }</strong> <span class="comment-time">(${commentTime})</span></p>
+    const userRef = firebase.database().ref("users/" + currentUser.uid);
+    userRef.once("value").then((userSnapshot) => {
+      const userData = userSnapshot.val();
+      const isAdmin = userData && userData.tipo === "adm";
+
+      dbRef.on("value", (snapshot) => {
+        commentsContainer.innerHTML = "";
+        const comments = snapshot.val();
+        if (comments) {
+          Object.keys(comments).forEach((commentId) => {
+            const comment = comments[commentId];
+            const isOwner = comment.userId === currentUser.uid;
+            const commentTime = new Date(comment.data).toLocaleString();
+
+            const commentElement = document.createElement("div");
+            commentElement.className = "comment";
+
+            commentElement.innerHTML = `
+              <p><strong>${comment.nome}</strong> <span class="comment-time">(${commentTime})</span></p>
               <p>${comment.text}</p>
               ${
                 isOwner || isAdmin
@@ -108,92 +119,86 @@ function carregarComentarios(topicId) {
               <button class="reply-button" data-id="${commentId}">Responder</button>
             `;
 
-          // Adicionar evento de exclusão
-          if (isOwner || isAdmin) {
-            const deleteButton = commentElement.querySelector(".delete-button");
-            deleteButton.addEventListener("click", () => {
-              const modal = document.getElementById("delete-modal");
-              const confirmButton = document.getElementById("confirm-delete");
-              const cancelButton = document.getElementById("cancel-delete");
+            // Botão de exclusão para o comentário
+            if (isOwner || isAdmin) {
+              const deleteButton = commentElement.querySelector(".delete-button");
+              deleteButton.addEventListener("click", () => {
+                const modal = document.getElementById("delete-modal");
+                const confirmButton = document.getElementById("confirm-delete");
+                const cancelButton = document.getElementById("cancel-delete");
 
-              modal.classList.remove("hidden");
+                modal.classList.remove("hidden");
 
-              confirmButton.onclick = () => {
-                dbRef
-                  .child(commentId)
-                  .remove()
-                  .then(() => {
+                confirmButton.onclick = () => {
+                  dbRef.child(commentId).remove().then(() => {
                     modal.classList.add("hidden");
                   });
-              };
+                };
 
-              cancelButton.onclick = () => {
-                modal.classList.add("hidden");
-              };
-            });
-          }
+                cancelButton.onclick = () => {
+                  modal.classList.add("hidden");
+                };
+              });
+            }
 
-          // Campo de resposta
-          const replyField = document.createElement("div");
-          replyField.className = "reply-field";
-          replyField.innerHTML = `
+            // Campo de resposta
+            const replyField = document.createElement("div");
+            replyField.className = "reply-field";
+            replyField.innerHTML = `
               <textarea placeholder="Digite sua resposta aqui..."></textarea>
               <button class="send-reply-button">Enviar</button>
             `;
 
-          replyField
-            .querySelector(".send-reply-button")
-            .addEventListener("click", () => {
-              const replyText = replyField.querySelector("textarea").value;
+            replyField
+              .querySelector(".send-reply-button")
+              .addEventListener("click", () => {
+                const replyText = replyField.querySelector("textarea").value;
 
-              if (replyText) {
-                const user = firebase.auth().currentUser;
-                const dbRef1 = firebase.database().ref("users/" + user.uid);
-                dbRef1.once("value").then((snapshot) => {
-                  const userData = snapshot.val();
-                  const reply = {
-                    nome: userData.displayName || "Anônimo",
-                    text: replyText,
-                    data: new Date().toISOString(),
-                    userId: currentUser.uid,
-                    likes: 0,
-                  };
-                
-                dbRef.child(`${commentId}/replies`).push(reply);
-                replyField.querySelector("textarea").value = "";
+                if (replyText) {
+                  const user = firebase.auth().currentUser;
+                  const dbRef1 = firebase.database().ref("users/" + user.uid);
+                  dbRef1.once("value").then((snapshot) => {
+                    const userData = snapshot.val();
+                    const reply = {
+                      nome: userData.displayName || "Anônimo",
+                      text: replyText,
+                      data: new Date().toISOString(),
+                      userId: currentUser.uid,
+                      likes: 0,
+                    };
+
+                    dbRef.child(`${commentId}/replies`).push(reply);
+                    replyField.querySelector("textarea").value = "";
+                  });
+                }
               });
-              }
-            });
 
-          commentElement
-            .querySelector(".reply-button")
-            .addEventListener("click", () => {
-              replyField.classList.toggle("active");
-            });
+            commentElement
+              .querySelector(".reply-button")
+              .addEventListener("click", () => {
+                replyField.classList.toggle("active");
+              });
 
-          commentElement.appendChild(replyField);
+            commentElement.appendChild(replyField);
 
-          // Carregar respostas
-          const repliesContainer = document.createElement("div");
-          repliesContainer.className = "replies-container";
-          const repliesRef = dbRef.child(`${commentId}/replies`);
-          repliesRef.on("value", (replySnapshot) => {
-            repliesContainer.innerHTML = "";
-            const replies = replySnapshot.val();
-            if (replies) {
-              Object.keys(replies).forEach((replyId) => {
-                const reply = replies[replyId];
-                const isReplyOwner =
-                  currentUser && reply.userId === currentUser.uid;
+            // Carregar respostas
+            const repliesContainer = document.createElement("div");
+            repliesContainer.className = "replies-container";
+            const repliesRef = dbRef.child(`${commentId}/replies`);
+            repliesRef.on("value", (replySnapshot) => {
+              repliesContainer.innerHTML = "";
+              const replies = replySnapshot.val();
+              if (replies) {
+                Object.keys(replies).forEach((replyId) => {
+                  const reply = replies[replyId];
+                  const isReplyOwner = currentUser && reply.userId === currentUser.uid;
+                  const replyTime = new Date(reply.data).toLocaleString();
 
-                const replyElement = document.createElement("div");
-                replyElement.className = "reply";
-                const replyTime = new Date(reply.data).toLocaleString();
+                  const replyElement = document.createElement("div");
+                  replyElement.className = "reply";
 
-                replyElement.innerHTML = `
-                    <p><strong>${
-                      reply.nome
-                    }</strong> <span class="reply-time">(${replyTime})</span></p>
+                  replyElement.innerHTML = `
+                    <p><strong>${reply.nome}</strong> <span class="reply-time">(${replyTime})</span></p>
                     <p>${reply.text}</p>
                     ${
                       isReplyOwner || isAdmin
@@ -202,26 +207,28 @@ function carregarComentarios(topicId) {
                     }
                   `;
 
-                if (isReplyOwner || isAdmin) {
-                  replyElement
-                    .querySelector(".delete-reply-button")
-                    .addEventListener("click", () => {
-                      repliesRef.child(replyId).remove();
-                    });
-                }
+                  if (isReplyOwner || isAdmin) {
+                    replyElement
+                      .querySelector(".delete-reply-button")
+                      .addEventListener("click", () => {
+                        repliesRef.child(replyId).remove();
+                      });
+                  }
 
-                repliesContainer.appendChild(replyElement);
-              });
-            }
+                  repliesContainer.appendChild(replyElement);
+                });
+              }
+            });
+
+            commentElement.appendChild(repliesContainer);
+            commentsContainer.appendChild(commentElement);
           });
-
-          commentElement.appendChild(repliesContainer);
-          commentsContainer.appendChild(commentElement);
-        });
-      }
+        }
+      });
     });
   });
 }
+
 
 function deleteComment(topicId, commentId) {
   if (!commentId) {

@@ -22,7 +22,7 @@ function carregarNavbar() {
               const nameFromDb = userData?.nome;
           
               const userName =
-                nameFromDb || user.displayName || user.email.split("@")[0]; 
+                nameFromDb || userData.displayName || user.displayName || user.email.split("@")[0]; 
               const formattedUserName =
                 userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase();
           

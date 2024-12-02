@@ -128,39 +128,97 @@ header {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 25px;
-    width: 300px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
     text-align: center;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
+    position: relative;
 }
-.modal-content button{
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    margin-top: 15px;
-}
-.modal-content button:hover{
-    background-color: #2ec47e;
-}
-.modal-content input{
-    margin-top: 10px;
-    border-radius: 5px;
-    padding: 2px;
-    border-style: solid;
-    border-color: #2ec47e;
 
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-content input[type="text"],
+.modal-content textarea {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #2ec47e;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    resize: none; 
+}
+
+
+.modal-content textarea {
+    height: 150px; 
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: #1d9f5e;
+    box-shadow: 0px 0px 8px rgba(46, 196, 126, 0.5);
+}
+
+.modal-content button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #2ec47e;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.modal-content button:hover {
+    background-color: #1d9f5e;
+    transform: scale(1.05);
 }
 
 .modal-content .close {
-    float: right;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.modal-content .close:hover {
+    color: #ff4d4d;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 :link {
